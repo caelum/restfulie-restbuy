@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0'
 
+gem 'relata'
+
 # gem 'tappie'
 
 # Bundle edge Rails instead:
