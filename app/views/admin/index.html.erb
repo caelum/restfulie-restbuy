@@ -40,12 +40,12 @@ function change_state(payment) {
 </td><td>
 
 <script>
-function change_state(payment) {
-	state = prompt("Enter new state [paid, rejected]:")
-	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
+function delivering_order(order) {
+	alert("Changing to delivering")
+	f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
 		{name: "_method", value: "put"},
-		{name: "id", value: payment},
-		{name: "state", value: state}
+		{name: "id", value: order},
+		{name: "state", value: 'delivering'}
 			).done();
 	document.body.appendChild(f);
 	f.submit();
@@ -60,7 +60,7 @@ function change_state(payment) {
 		<td><%= order.id %></td>
 		<td>
 		<%if order.state=="preparing" %>
-			<a href="javascript:change_state(<%=order.id%>);">
+			<a href="javascript:delivering_order(<%=order.id%>);">
 		<% end %>
 		<%= order.state %></a></td>
 		<td><%= link_to "show", order %></td>

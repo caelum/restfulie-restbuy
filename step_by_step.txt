@@ -41,7 +41,7 @@ gc "database created"
 
 rails g controller System logout
 rails g controller Payments create
-rails g controller Admin index update_payment
+rails g controller Admin index update_payment update_order
 
 
 # tag SYSTEM

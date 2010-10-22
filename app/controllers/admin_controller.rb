@@ -8,9 +8,6 @@ class AdminController < ApplicationController
     p = Payment.find(params[:id])
     p.state = params[:state]
     p.save
-    puts p.state
-    puts "state"
-    puts p.state.class
     if p.state=="paid"
       o = Order.find(p.order.id)
       if o.completely_paid?
@@ -18,6 +15,13 @@ class AdminController < ApplicationController
         o.save
       end
     end
+    redirect_to :action => :index
+  end
+
+  def update_order
+    o = Order.find(params[:id])
+    o.state = params[:state]
+    o.save
     redirect_to :action => :index
   end
 

@@ -1,4 +1,6 @@
 Restbuy::Application.routes.draw do
+  put "admin/update_order"
+
   get "admin/index"
 
   put "admin/update_payment"
