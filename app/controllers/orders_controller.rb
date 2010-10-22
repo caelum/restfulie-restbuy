@@ -40,17 +40,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    @order = Order.new(params[:order])
+    @order = Order.new
+    @order.address = params[:order][:address]
+    @order.state = "unpaid"
+    @order.save
+    @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
+    session[:order] = @order
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to(@order, :notice => 'Order was successfully created.')
   end
 
   # PUT /orders/1

@@ -7,7 +7,9 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+<%if session[:order] %>
+<a href="<%=order_path session[:order]%>">Your most recent accessed order</a>
+<% end %>
 <%= yield %>
 
 </body>

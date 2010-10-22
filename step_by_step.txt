@@ -1,13 +1,24 @@
 rails new restbuy
 cd restbuy
 git init
-gc "first commit"
-
 rails g scaffold product name:string price:decimal
 rails g model item product_id:integer quantity:integer order_id:integer
 rails g scaffold order address:string state:string
 rails g model payment value:decimal order_id:integer card_number:string card_holder:string state:string
 gc "system models in place"
+
+
+# jquery
+curl -L http://code.jquery.com/jquery-1.4.2.min.js > public/javascripts/jquery.js
+curl -L http://github.com/rails/jquery-ujs/raw/master/src/rails.js > public/javascripts/rails.js
+curl -L http://github.com/cairesvs/formfy/raw/master/formfy.js > public/javascripts/formfy.js
+
+# application.rb
+descomenta a linha de javascript, adiciona formfy
+
+config.action_controller.allow_forgery_protection    = false
+
+
 
 rails g migration insert_sample_products
 echo "class InsertSampleProducts < ActiveRecord::Migration
@@ -27,3 +38,23 @@ end" > db/migrate/*_insert_sample_products*
 
 rake db:create db:migrate
 gc "database created"
+
+
+# mudancas de codigo:
+
+
+
+
+
+# PART 1
+
+
+Presenting a server:
+- search
+- create
+- pay
+- admin: unpaid, refused, preparing, cancelled, delivering, failed_to_deliver, delivered
+- confirming -> preparing e refused
+- prep -> devlivering
+- deliv -> delivered, failed to deliver
+- share payment between friends

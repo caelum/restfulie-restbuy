@@ -10,6 +10,15 @@
   <%= @order.state %>
 </p>
 
+<table>
+<% @order.items.each do |i| %>
+<tr>
+	<td><%= i.product.name %></td>
+	<td><%= i.quantity %></td>
+</tr>
+<% end %>
+</table>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
