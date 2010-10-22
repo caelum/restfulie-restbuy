@@ -22,22 +22,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # GET /orders/new
-  # GET /orders/new.xml
-  def new
-    @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
-    end
-  end
-
-  # GET /orders/1/edit
-  def edit
-    @order = Order.find(params[:id])
-  end
-
   # POST /orders
   # POST /orders.xml
   def create
