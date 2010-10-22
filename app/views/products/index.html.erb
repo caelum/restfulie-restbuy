@@ -12,6 +12,16 @@
 <script>
 function add(product) {
 	qtd = $('#product_' + product).val()
+	f = new Formfy().with.action("<%= order_path(current_order) %>").post().inputs(
+		{name: "_method", value: "put"},
+		{name: "order[product]", value: product},
+		{name: "order[quantity]", value: qtd}
+			).done();
+	document.body.appendChild(f);
+	f.submit();
+}
+function create(product) {
+	qtd = $('#product_' + product).val()
 	address = prompt("Enter your address");
 	f = new Formfy().with.action("<%= orders_path%>").post().inputs(
 		{name: "order[product]", value: product},
@@ -28,7 +38,11 @@ function add(product) {
     <td><%= product.price %></td>
 		<td>
 			<input id="product_<%=product.id%>" value="1" />
-			<input type="button" onclick="add(<%=product.id%>);" value="add to order">
+			<% if current_order %>
+				<input type="button" onclick="add(<%=product.id%>);" value="add to current order">
+			<% else %>
+				<input type="button" onclick="create(<%=product.id%>);" value="add to order">
+			<% end %>
 		</td>
     <td><%= link_to 'Show', product %></td>
     <td><%= link_to 'Edit', edit_product_path(product) %></td>

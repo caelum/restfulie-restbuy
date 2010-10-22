@@ -54,16 +54,9 @@ class OrdersController < ApplicationController
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
+    @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
+    session[:order] = @order
+    redirect_to(@order, :notice => 'Order was successfully updated.')
   end
 
   # DELETE /orders/1
