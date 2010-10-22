@@ -10,6 +10,7 @@
   </tr>
 
 <script>
+<% if current_order %>
 function add(product) {
 	qtd = $('#product_' + product).val()
 	f = new Formfy().with.action("<%= order_path(current_order) %>").post().inputs(
@@ -20,6 +21,7 @@ function add(product) {
 	document.body.appendChild(f);
 	f.submit();
 }
+<% end %>
 function create(product) {
 	qtd = $('#product_' + product).val()
 	address = prompt("Enter your address");

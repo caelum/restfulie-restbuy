@@ -39,8 +39,10 @@ end" > db/migrate/*_insert_sample_products*
 rake db:create db:migrate
 gc "database created"
 
+rails g controller system logout
 
-# mudancas de codigo:
+
+# tag SYSTEM
 
 
 

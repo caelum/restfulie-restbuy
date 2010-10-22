@@ -1,4 +1,6 @@
 Restbuy::Application.routes.draw do
+  get "system/logout"
+
   resources :orders
 
   resources :products
