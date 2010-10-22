@@ -1,7 +1,7 @@
 class CreatePayments < ActiveRecord::Migration
   def self.up
     create_table :payments do |t|
-      t.double :value
+      t.decimal :value
       t.integer :order_id
       t.string :card_number
       t.string :card_holder

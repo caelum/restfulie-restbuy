@@ -1,4 +1,29 @@
-rails g scaffold product name:string price:double
+rails new restbuy
+cd restbuy
+git init
+gc "first commit"
+
+rails g scaffold product name:string price:decimal
 rails g model item product_id:integer quantity:integer order_id:integer
-rails g scaffold basket address:string state:string
-rails g model payment value:double basket_id:integer card_number:string card_holder:string state:string
+rails g scaffold order address:string state:string
+rails g model payment value:decimal order_id:integer card_number:string card_holder:string state:string
+gc "system models in place"
+
+rails g migration insert_sample_products
+echo "class InsertSampleProducts < ActiveRecord::Migration
+  def self.up
+		Product.create :name => 'Apple macbook pro', :price => 1000
+		Product.create :name => 'Rest Training (20h)', :price => 800
+		Product.create :name => 'Modern Software architecture and Design (20h)', :price => 800
+		Product.create :name => 'Ipad', :price => 600
+		Product.create :name => 'Audi TT', :price => 40000
+		Product.create :name => 'Flowers', :price => 20
+  end
+
+  def self.down
+		Product.delete_all
+  end
+end" > db/migrate/*_insert_sample_products*
+
+rake db:create db:migrate
+gc "database created"
