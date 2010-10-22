@@ -40,4 +40,8 @@ class Order < ActiveRecord::Base
     !completely_paid?
   end
   
+  def can_cancel?
+    !completely_paid? || state=="preparing" || state=="failed_to_deliver"
+  end
+  
 end

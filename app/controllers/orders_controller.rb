@@ -64,11 +64,12 @@ class OrdersController < ApplicationController
   # DELETE /orders/1.xml
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(orders_url) }
-      format.xml  { head :ok }
+    if @order.can_cancel?
+      @order.state = "cancelled"
+      @order.save
+      redirect_to(orders_url)
+    else
+      redirect_to(order, :notice => 'Order can not be cancelled')
     end
   end
 end

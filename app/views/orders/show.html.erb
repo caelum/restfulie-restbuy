@@ -10,9 +10,23 @@
   <%= @order.address %>
 </p>
 
+<script>
+function cancel(order) {
+	f = new Formfy().with.action("<%= order_path(@order) %>").post().inputs(
+		{name: "_method", value: "delete"},
+		{name: "id", value: order}
+			).done();
+	document.body.appendChild(f);
+	f.submit();
+	return false;
+}
+</script>
 <p>
   <b>State:</b>
   <%= @order.state %>
+<% if @order.can_cancel? %>
+	<a href="javascript:cancel();">Cancel</a>
+<% end %>
 </p>
 
 <p>
@@ -73,6 +87,5 @@
 <% end %>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Products', products_path %> |
 <%= link_to 'Back', orders_path %>

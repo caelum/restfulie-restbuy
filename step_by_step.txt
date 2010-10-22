@@ -50,9 +50,7 @@ rails g controller Admin index update_payment update_order
 
 
 
-# PART 1
-
-
+# PART 1: 15 minutes
 Presenting a server:
 - search
 - create
@@ -60,6 +58,5 @@ Presenting a server:
 - admin: unpaid, refused, preparing
 - admin: preparing -> delivering
 - delivering -> delivered, failed to deliver
-- FALTA
-cancelled, delivering, failed_to_deliver, delivered
+- cancel
 - share payment between friends
