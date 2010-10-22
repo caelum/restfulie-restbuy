@@ -5,7 +5,7 @@
 
 <script>
 function change_state(payment) {
-	state = prompt("Enter new state [paid, rejected]:")
+	state = prompt("Enter new state [paid, rejected]:");
 	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
 		{name: "_method", value: "put"},
 		{name: "id", value: payment},
@@ -40,16 +40,19 @@ function change_state(payment) {
 </td><td>
 
 <script>
-function delivering_order(order) {
-	alert("Changing to delivering")
+function delivering_order_selected(order, what) {
 	f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
 		{name: "_method", value: "put"},
 		{name: "id", value: order},
-		{name: "state", value: 'delivering'}
+		{name: "state", value: what}
 			).done();
 	document.body.appendChild(f);
 	f.submit();
 	return false;
+}
+function delivering_order(order, options) {
+	state = prompt("Enter new state " + options + ":");
+	delivering_order_selected(order, state);
 }
 </script>
 <h2>Orders</h2>
@@ -60,7 +63,9 @@ function delivering_order(order) {
 		<td><%= order.id %></td>
 		<td>
 		<%if order.state=="preparing" %>
-			<a href="javascript:delivering_order(<%=order.id%>);">
+			<a href="javascript:alert("Changing to delivering");delivering_order_selected(<%=order.id%>, 'preparing');">
+		<%elsif order.state=="delivering" %>
+			<a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);">
 		<% end %>
 		<%= order.state %></a></td>
 		<td><%= link_to "show", order %></td>
