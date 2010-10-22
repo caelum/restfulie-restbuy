@@ -1,0 +1,17 @@
+<h1>Master of Magic</h1>
+
+<h2>Payments</h2>
+<table>
+	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
+<% @payments.each do |i| %>
+	<tr>
+		<td><%= i.id %></td>
+		<td><%= i.card_number %></td>
+		<td><%= i.card_holder %></td>
+		<td><%= i.value %></td>
+		<td><%= i.state %></td>
+		<td><%= link_to "order #{i.order.id}", i.order %></td>
+	</tr>
+<% end %>
+</table>
+

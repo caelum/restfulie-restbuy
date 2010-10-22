@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Id:</b>
+  <%= @order.id %>
+</p>
+
+<p>
   <b>Address:</b>
   <%= @order.address %>
 </p>
@@ -23,9 +28,10 @@
 
 <h2>Payments</h2>
 <table>
-	<tr><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
+	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
 <% @order.payments.each do |i| %>
 	<tr>
+		<td><%= i.id %></td>
 		<td><%= i.card_number %></td>
 		<td><%= i.card_holder %></td>
 		<td><%= i.value %></td>

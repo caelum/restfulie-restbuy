@@ -9,9 +9,10 @@
 <body>
 <%if current_order %>
 	<%= link_to 'Your most recent accessed order', current_order %>
-  | <%= link_to 'Clear session', system_logout_path %>
-	
+  | <%= link_to 'Clear session', system_logout_path %> |
 <% end %>
+<%= link_to 'Admin', admin_index_path %>
+
 <%= yield %>
 
 </body>

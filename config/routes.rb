@@ -1,4 +1,8 @@
 Restbuy::Application.routes.draw do
+  get "admin/index"
+
+  get "admin/update_payment"
+
   get "payments/create"
 
   get "system/logout"
