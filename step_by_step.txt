@@ -39,7 +39,8 @@ end" > db/migrate/*_insert_sample_products*
 rake db:create db:migrate
 gc "database created"
 
-rails g controller system logout
+rails g controller System logout
+rails g controller Payments create
 
 
 # tag SYSTEM

@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.xml
   def show
     @order = Order.find(params[:id])
+    @payment = Payment.new
 
     respond_to do |format|
       format.html # show.html.erb

@@ -10,7 +10,9 @@
   <%= @order.state %>
 </p>
 
+<h2>Products</h2>
 <table>
+<tr><th>Name</th><th>Quantity</th></tr>
 <% @order.items.each do |i| %>
 <tr>
 	<td><%= i.product.name %></td>
@@ -18,6 +20,41 @@
 </tr>
 <% end %>
 </table>
+
+<h2>Payments</h2>
+<table>
+	<tr><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
+<% @order.payments.each do |i| %>
+	<tr>
+		<td><%= i.card_number %></td>
+		<td><%= i.card_holder %></td>
+		<td><%= i.value %></td>
+		<td><%= i.state %></td>
+	</tr>
+<% end %>
+</table>
+
+
+<% if @order.state=="unpaid" %>
+<%= form_for([@order, @payment]) do |f| %>
+  <div class="field">
+    <%= f.label :card_holder %><br />
+    <%= f.text_field :card_holder %>
+  </div>
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% end %>
 
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

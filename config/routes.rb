@@ -1,7 +1,11 @@
 Restbuy::Application.routes.draw do
+  get "payments/create"
+
   get "system/logout"
 
-  resources :orders
+  resources :orders do
+    resources :payments
+  end
 
   resources :products
 
