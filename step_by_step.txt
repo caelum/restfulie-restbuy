@@ -43,13 +43,9 @@ rails g controller System logout
 rails g controller Payments create
 rails g controller Admin index update_payment update_order
 
-# tag SYSTEM
 
 
-
-
-
-# PART 1: 15 minutes
+# PART 1: 15 minutes: tag 1-webbuy
 Presenting a server:
 - create
 - pay
