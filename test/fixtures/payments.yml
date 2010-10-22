@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  value: 
+  order_id: 1
+  card_number: MyString
+  card_holder: MyString
+  state: MyString
+
+two:
+  value: 
+  order_id: 1
+  card_number: MyString
+  card_holder: MyString
+  state: MyString

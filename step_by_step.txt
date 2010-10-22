@@ -1,0 +1,4 @@
+rails g scaffold product name:string price:double
+rails g model item product_id:integer quantity:integer order_id:integer
+rails g scaffold basket address:string state:string
+rails g model payment value:double basket_id:integer card_number:string card_holder:string state:string
