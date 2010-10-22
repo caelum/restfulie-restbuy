@@ -63,7 +63,7 @@ function delivering_order(order, options) {
 		<td><%= order.id %></td>
 		<td>
 		<%if order.state=="preparing" %>
-			<a href="javascript:alert("Changing to delivering");delivering_order_selected(<%=order.id%>, 'preparing');">
+			<a href="javascript:delivering_order_selected(<%=order.id%>, 'delivering');">
 		<%elsif order.state=="delivering" %>
 			<a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);">
 		<% end %>

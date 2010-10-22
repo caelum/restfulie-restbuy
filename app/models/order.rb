@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
   end
   
   def can_cancel?
-    !completely_paid? || state=="preparing" || state=="failed_to_deliver"
+    !completely_paid? || state=="preparing"
   end
   
 end

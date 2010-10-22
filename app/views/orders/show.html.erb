@@ -25,7 +25,7 @@ function cancel(order) {
   <b>State:</b>
   <%= @order.state %>
 <% if @order.can_cancel? %>
-	<a href="javascript:cancel();">Cancel</a>
+	<a href="javascript:change_to('cancel');">Cancel</a>
 <% end %>
 </p>
 
