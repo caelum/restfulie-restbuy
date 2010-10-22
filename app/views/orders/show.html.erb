@@ -15,6 +15,16 @@
   <%= @order.state %>
 </p>
 
+<p>
+  <b>Price:</b>
+  <%= @order.price %>
+</p>
+
+<p>
+  <b>Price to pay:</b>
+  <%= @order.price_to_pay %>
+</p>
+
 <h2>Products</h2>
 <table>
 <tr><th>Name</th><th>Quantity</th></tr>
@@ -41,7 +51,7 @@
 </table>
 
 
-<% if @order.state=="unpaid" %>
+<% if @order.can_pay? %>
 <%= form_for([@order, @payment]) do |f| %>
   <div class="field">
     <%= f.label :card_holder %><br />

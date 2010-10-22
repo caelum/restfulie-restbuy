@@ -57,7 +57,9 @@ Presenting a server:
 - search
 - create
 - pay
-- admin: unpaid, refused, preparing, cancelled, delivering, failed_to_deliver, delivered
+- admin: unpaid, refused, preparing
+- FALTA
+cancelled, delivering, failed_to_deliver, delivered
 - confirming -> preparing e refused
 - prep -> devlivering
 - deliv -> delivered, failed to deliver

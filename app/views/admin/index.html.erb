@@ -1,5 +1,18 @@
 <h1>Master of Magic</h1>
 
+<script>
+function change_state(payment) {
+	state = prompt("Enter new state [paid, rejected]:")
+	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
+		{name: "_method", value: "put"},
+		{name: "id", value: payment},
+		{name: "state", value: state}
+			).done();
+	document.body.appendChild(f);
+	f.submit();
+	return false;
+}
+</script>
 <h2>Payments</h2>
 <table>
 	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
@@ -9,7 +22,11 @@
 		<td><%= i.card_number %></td>
 		<td><%= i.card_holder %></td>
 		<td><%= i.value %></td>
-		<td><%= i.state %></td>
+		<td>
+		<%if !i.finished_processing? %>
+			<a href="javascript:change_state(<%=i.id%>);">
+		<% end %>
+		<%= i.state %></a></td>
 		<td><%= link_to "order #{i.order.id}", i.order %></td>
 	</tr>
 <% end %>

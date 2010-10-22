@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rcov (0.9.9)
+    thoughtbot-shoulda (2.11.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rcov
+  thoughtbot-shoulda
