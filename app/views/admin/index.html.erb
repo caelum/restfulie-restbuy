@@ -1,4 +1,7 @@
-<h1>Master of Magic</h1>
+ <h1>Master of Magic</h1>
+
+<table width="100%">
+	<tr><td>
 
 <script>
 function change_state(payment) {
@@ -32,3 +35,39 @@ function change_state(payment) {
 <% end %>
 </table>
 
+</div>
+
+</td><td>
+
+<script>
+function change_state(payment) {
+	state = prompt("Enter new state [paid, rejected]:")
+	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
+		{name: "_method", value: "put"},
+		{name: "id", value: payment},
+		{name: "state", value: state}
+			).done();
+	document.body.appendChild(f);
+	f.submit();
+	return false;
+}
+</script>
+<h2>Orders</h2>
+<table>
+	<tr><th>Id</th><th>State</th><th>Address</th><th>Price</th></tr>
+<% @orders.each do |order| %>
+	<tr>
+		<td><%= order.id %></td>
+		<td>
+		<%if order.state=="preparing" %>
+			<a href="javascript:change_state(<%=order.id%>);">
+		<% end %>
+		<%= order.state %></a></td>
+		<td><%= link_to "show", order %></td>
+		<td><%= order.address %></td>
+		<td><%= order.price %></td>
+	</tr>
+<% end %>
+</table>
+
+</tr></table>

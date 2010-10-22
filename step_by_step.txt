@@ -58,9 +58,8 @@ Presenting a server:
 - create
 - pay
 - admin: unpaid, refused, preparing
+- admin: preparing -> delivering
+- delivering -> delivered, failed to deliver
 - FALTA
 cancelled, delivering, failed_to_deliver, delivered
-- confirming -> preparing e refused
-- prep -> devlivering
-- deliv -> delivered, failed to deliver
 - share payment between friends
