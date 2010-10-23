@@ -4,5 +4,5 @@
   <Description>Restbuy search engine.</Description>
   <Tags>restbuy</Tags>
   <Contact>admin@restbuy.com</Contact>
-  <Url type="application/rss+xml"  template="http://localhost:3000/products?q={searchTerms}&amp;pw={startPage?}&amp;format=atom" />
+  <Url type="application/atom+xml"  template="http://localhost:3000/products?q={searchTerms}&amp;pw={startPage?}&amp;format=atom" />
 </OpenSearchDescription>
