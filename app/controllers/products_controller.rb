@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.xml
+  
   def index
-    # @products = Product.where {name.like? "%#{params[:name] || ''}%"}
-    @products = Product.where("name like ?", "%#{params[:name] || ''}%")
+    # @products = Product.where {name.like? "%#{params[:q] || ''}%"}
+    @products = Product.where("name like ?", "%#{params[:q] || ''}%")
 
     respond_to do |format|
       format.html # index.html.erb
+      format.atom {}
       format.xml  { render :xml => @products }
     end
   end

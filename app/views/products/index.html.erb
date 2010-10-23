@@ -1,7 +1,7 @@
 <h1>Listing products</h1>
 
 <form action="<%= products_path %>">
-	Filter: <input name="name" value="<%= params[:name]%>" /> <input type="submit" value="filter" />
+	Filter: <input name="q" value="<%= params[:q]%>" /> <input type="submit" value="filter" />
 </form>
 
 <table>

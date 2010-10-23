@@ -10,10 +10,10 @@ Restbuy::Application.routes.draw do
   get "system/logout"
 
   resources :orders do
-    resources :payments
+    resources :payments, :only => :create
   end
 
-  resources :products
+  resources :products, :only => [:create, :index, :show, :edit, :new]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

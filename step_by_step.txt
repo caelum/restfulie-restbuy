@@ -56,4 +56,9 @@ Presenting a server:
 - share payment between friends
 - search
 
-# PART 2:
+# PART 2: 15 minutes: tag 2-open-search
+tag opensearch
+suporta opensearch, mostra cliente
+curl http://localhost:3000/search.xml
+curl http://localhost:3000/products?q=apple\&format=atom
+curl http://localhost:3000/products?q=\&format=atom
