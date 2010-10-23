@@ -59,6 +59,113 @@ Presenting a server:
 # PART 2: 15 minutes: tag 2-open-search
 tag opensearch
 suporta opensearch, mostra cliente
-curl http://localhost:3000/search.xml
+curl http://localhost:3000/products/opensearch.xml
 curl http://localhost:3000/products?q=apple\&format=atom
 curl http://localhost:3000/products?q=\&format=atom
+
+# client_spec.rb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tag basket
+suportar criar basket
+
+tag add product
+adicionar produto a basket atraves de um form no basket
+
+tag pay
+pay eh preencher um form no basket
+
+tag imprimir recibo
+fica pigando de 10 em 10 secs e quando ok, imprime o recibo
+
+tag retry-payment
+fica pingando de 10 em 10 secs e retenta pagar com outros dados
+tenta no maximo 3
+
+tag cancel
+se tentar 3 vezes e nao conseguir, cancela
+
+tag failed-to-deliver
+retenta no maximo 3 vezes
+
+tag delivered
+se pagou e imprimiu recibo, fica pingando de 10 em 10 secs ate delivered
+
+tag calendar
+mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
+
+tag cancel
+tenha um link chamado cancelar
+basta clicar no link cancelar, ou no link basket ou no link receipt para ver essas coisas
+
+
+
+
+
+event based, da pra fazer algo? que eu leio os deltas de mudancas?
+
+
+
+
+
+
+extensao push
+suportar event notification via push e pusher
+
+extensao callback
+NAOOOOO< so comentar
+
+
+extensao finances:
+ask for auth from bank, use this auth to send to the guy, which authroizes with the bank
+interface to try a second time
+
+
+
+
+extensao usa opensearch para comprar em varios:
+adicionar um outro site sem ser a "amazon"
+escolhe o mais barato
+
+
+
+
+extensao 5:
+a propria "amazon" delega para outro produto, ganhando uma % de comissao
+????????????????
+
+extensao 6 (de graca):
+produto sempre mostra reocmendacoes
+calendario visualiza os produtos recomendados e similares
+form com a basket para ja comprar essa recomendacao e qtdes
+
+
+
+extensao 7:
+cliente automatizado tambem olha recomendacoes antes de efetuar a compra e manda email com essas recomendacoes
+
+
+
+AUTHorization
+AUTHentication
+

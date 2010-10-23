@@ -8,6 +8,9 @@ Restbuy::Application.routes.draw do
   get "payments/create"
 
   get "system/logout"
+  
+  root :controller => :products, :action => :index
+  match "products/opensearch.xml" => "system#search"
 
   resources :orders do
     resources :payments, :only => :create
