@@ -49,6 +49,33 @@ describe Restfulie do
       result.order.state.should == "processing_payment"
 
     end
+    
+    def wait_for_order_state(state, result, do_what)
+      while result.order.state != "preparing"
+        sleep 10
+        puts "Checking order status at #{result.order.links.self.href}, please #{do_what}"
+        result = result.order.links.self.follow.get.resource
+      end
+      result
+    end
+    
+    it "should wait until its preparing" do
+      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      
+      product = results.resource.entries[0]
+      selected = {:order => {:product => product.id, :quantity => 1}}
+
+      result = results.resource.links.order.follow.post(my_order).resource
+      result = result.order.links.self.follow.put(selected).resource
+      
+      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
+      result = result.order.links.payment.follow.post(card).resource
+      
+      result = wait_for_order_state "preparing", result, "confirm its payment as paid."
+      result.order.state.should == "preparing"
+
+    end
 
   end
 
