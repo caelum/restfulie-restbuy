@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   
-  respond_to :html, :atom
+  respond_to :html, :atom, :json, :xml
 
   def index
     # @products = Product.where {name.like? "%#{params[:q] || ''}%"}
