@@ -13,8 +13,8 @@ describe Restfulie do
     it "should have a link to the order" do
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       items = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
-      order = items.resource.links.order.follow.debug.post(:order => {:address => "R. Vergueiro 3185, Sao Paulo, Brazil"})
-      p order.debug.resource
+      order = items.resource.links.order.follow.post(:order => {:address => "R. Vergueiro 3185, Sao Paulo, Brazil"})
+      p order.resource
     end
     
   end

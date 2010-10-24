@@ -66,9 +66,8 @@ curl http://localhost:3000/products?q=\&format=atom
 # client_spec.rb
 
 # PART 3: 15 minutes: create basket
-
 tag basket
-suportar criar basket
+creates and redirects to the basket
 
 
 

@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
   # GET /orders/1
-  # GET /orders/1.xml
   def show
     @order = Order.find(params[:id])
     @payment = Payment.new
@@ -13,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   # POST /orders
-  # POST /orders.xml
   def create
     @order = Order.new
     @order.address = params[:order][:address]
@@ -24,11 +22,13 @@ class OrdersController < ApplicationController
     end
     session[:order] = @order
 
-    redirect_to(@order, :notice => 'Order was successfully created.')
+    respond_to do |format|
+      format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
+      format.xml  { debugger; render :status => 201, :location => order_url(@order), :xml => @order }
+    end
   end
 
   # PUT /orders/1
-  # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
     @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
@@ -37,7 +37,6 @@ class OrdersController < ApplicationController
   end
 
   # DELETE /orders/1
-  # DELETE /orders/1.xml
   def destroy
     @order = Order.find(params[:id])
     if @order.can_cancel?
