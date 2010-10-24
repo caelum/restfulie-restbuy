@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-      format.xml  { debugger; render :status => 201, :location => order_url(@order), :xml => @order }
+      format.xml  { render :status => 201, :location => order_url(@order), :xml => @order }
     end
   end
 

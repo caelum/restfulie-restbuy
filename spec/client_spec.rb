@@ -10,11 +10,15 @@ describe Restfulie do
       items.resource.entries.size.should == 2
     end
     
+    def my_order
+      { :order => {:address => "R. Vergueiro 3185, Sao Paulo, Brazil"} }
+    end
+    
     it "should have a link to the order" do
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      items = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
-      order = items.resource.links.order.follow.post(:order => {:address => "R. Vergueiro 3185, Sao Paulo, Brazil"})
-      p order.resource
+      response = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      response = response.resource.links.order.follow.post(my_order)
+      response.resource.order.address.should == my_order[:order][:address]
     end
     
   end
