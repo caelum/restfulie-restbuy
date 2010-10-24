@@ -19,7 +19,9 @@ class OrdersController < ApplicationController
     @order.address = params[:order][:address]
     @order.state = "unpaid"
     @order.save
-    @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
+    if params[:order][:product]
+      @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
+    end
     session[:order] = @order
 
     redirect_to(@order, :notice => 'Order was successfully created.')
