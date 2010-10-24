@@ -1,11 +1,12 @@
 member(@order) do |m|
   
   m.link "self", order_url(@order)
+  m.link "payment", order_payments_url(@order), "type" => "application/xml"
   m.values { |v|
     v.address @order.address
     v.price @order.price
   }
-
+  
   m.members(@order.items) do |member, item|
     member.link :self, product_url(item.product)
     member.values { |values|

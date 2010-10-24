@@ -34,6 +34,21 @@ describe Restfulie do
       
     end
     
+    it "should be able to pay" do
+      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      
+      product = results.resource.entries[0]
+      selected = {:order => {:product => product.id, :quantity => 1}}
+
+      result = results.resource.links.order.follow.post(my_order).resource
+      result = result.order.links.self.follow.put(selected).resource
+      result.order.links.payment
+      result.order.price.should == product.price
+      
+    end
+    
   end
+
 
 end
