@@ -24,13 +24,13 @@ describe Restfulie do
     it "should be able to add an item to an order" do
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
-      order = results.resource.links.order.follow.post(my_order).resource
-
-      debugger
+      
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
-      order = order.links.self.follow.put(selected).resource
-      order.price.should == product.price
+
+      result = results.resource.links.order.follow.post(my_order).resource
+      result = result.order.links.self.follow.put(selected).resource
+      result.order.price.should == product.price
       
     end
     

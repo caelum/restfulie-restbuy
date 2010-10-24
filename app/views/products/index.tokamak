@@ -1,4 +1,4 @@
-collection(@products) do |collection|
+collection(@products, :root => "products") do |collection|
 
   collection.link "order", orders_url, "type" => "application/xml"
   

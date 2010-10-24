@@ -3,6 +3,7 @@ member(@order) do |m|
   m.link "self", order_url(@order)
   m.values { |v|
     v.address @order.address
+    v.price @order.price
   }
 
   m.members(@order.items) do |member, item|
