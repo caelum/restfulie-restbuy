@@ -5,6 +5,7 @@ member(@order) do |m|
   m.values { |v|
     v.address @order.address
     v.price @order.price
+    v.state @order.state
   }
   
   m.members(@order.items) do |member, item|
@@ -14,6 +15,13 @@ member(@order) do |m|
       values.name   item.product.name
       values.price  item.product.price
       values.quantity  item.quantity
+    }
+  end
+
+  m.members(@order.payments) do |member, payment|
+    member.values { |values|
+      values.value  payment.value
+      values.state  payment.state
     }
   end
 
