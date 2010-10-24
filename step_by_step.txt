@@ -87,7 +87,7 @@ polling every 10 secs until its confirmed
 refresh = self.follow.get
 
 # PART 11: 15 minutes: 11-retry-payment
-try to repay up to 3 times
+try to repay up twice
 
 # PART 11: 15 minutes: 11-cancel
 se tentar 3 vezes e nao conseguir, cancela
