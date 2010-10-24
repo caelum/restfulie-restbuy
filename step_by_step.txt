@@ -65,29 +65,30 @@ curl http://localhost:3000/products?q=\&format=atom
 
 # client_spec.rb
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# PART 3: 15 minutes: create basket
 
 tag basket
 suportar criar basket
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 tag add product
 adicionar produto a basket atraves de um form no basket
@@ -126,6 +127,7 @@ event based, da pra fazer algo? que eu leio os deltas de mudancas?
 
 
 
+use forms on creation
 
 
 
