@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1
-  # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
 
@@ -20,7 +19,6 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
-  # GET /products/new.xml
   def new
     @product = Product.new
   end
