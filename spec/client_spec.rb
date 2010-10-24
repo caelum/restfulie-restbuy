@@ -54,7 +54,7 @@ describe Restfulie do
       while result.order.state != "preparing"
         sleep 10
         puts "Checking order status at #{result.order.links.self.href}, please #{do_what}"
-        result = result.order.links.self.follow.get.resource
+        result = result.order.refresh.resource
       end
       result
     end
