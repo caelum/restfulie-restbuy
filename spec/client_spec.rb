@@ -49,7 +49,7 @@ describe Restfulie do
       result.order.state.should == "processing_payment"
 
     end
-    
+
   end
 
 

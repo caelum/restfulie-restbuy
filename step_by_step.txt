@@ -80,6 +80,9 @@ picks the first product from the search and adds to the basket
 # PART 8: 10 minutes: 8-its-time-to-pay
 payment time
 
+# PART 9: 10 minutes: 9-polling-print-my-receipt
+polling every 10 secs until its confirmed
+
 
 
 
@@ -101,9 +104,6 @@ tag using uris as ids
 
 tag use-form-to-add
 uses a form to add an item to the basket
-
-tag imprimir recibo
-fica pigando de 10 em 10 secs e quando ok, imprime o recibo
 
 tag retry-payment
 fica pingando de 10 em 10 secs e retenta pagar com outros dados

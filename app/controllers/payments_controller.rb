@@ -5,7 +5,6 @@ class PaymentsController < ApplicationController
     @order.save
     @order.payments.create params[:payment].merge :state => :processing
 
-    debugger
     respond_to do |format|
       format.html { redirect_to(@order, :notice => 'Payment was successfully created.') }
       format.xml  { render :status => 201, :location => order_url(@order), :text => "" }
