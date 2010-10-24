@@ -50,7 +50,7 @@ class SystemController < ApplicationController
   end
   
   def search
-    render :text => Searchie::OpenSearch.new.accepts("application/atom+xml").at(products_url + "?q={searchTerms}&amp;pw={startPage?}&amp;format=atom").to_xml
+    render :content_type => "application/opensearchdescription+xml", :text => Searchie::OpenSearch.new.accepts("application/atom+xml").at(products_url + "?q={searchTerms}&amp;pw={startPage?}&amp;format=atom").to_xml
   end
   
 end
