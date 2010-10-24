@@ -67,15 +67,15 @@ curl http://localhost:3000/products?q=\&format=atom
 # PART 3: 15 minutes: tag 3-create-basket
 creates and redirects to the basket
 
-# PART 4: 15 minutes: tag 4-add-product
-picks the first product from the search and adds to the basket
-
 # PART 5: 10 minutes: tag 5-restfulie-atom
 serving atom
 simpler tokamak builder
 
 # PART 6: 5 minutes: tag 6-restfulie-json-xml
+serving json and xml with restfulie products
 
+# PART 7: 15 minutes: tag 4-add-product
+picks the first product from the search and adds to the basket
 
 
 

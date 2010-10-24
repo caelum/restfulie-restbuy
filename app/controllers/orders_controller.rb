@@ -1,14 +1,12 @@
 class OrdersController < ApplicationController
+  
+  respond_to :html, :xml, :json, :atom
 
   # GET /orders/1
   def show
     @order = Order.find(params[:id])
     @payment = Payment.new
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @order }
-    end
+    respond_with @order
   end
 
   # POST /orders
@@ -24,7 +22,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-      format.xml  { render :status => 201, :location => order_url(@order), :xml => @order }
+      format.xml  { render :status => 201, :location => order_url(@order), :text => "" }
     end
   end
 

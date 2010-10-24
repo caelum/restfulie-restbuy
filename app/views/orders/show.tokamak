@@ -1,0 +1,18 @@
+member(@order) do |m|
+  
+  m.link "self", order_url(@order)
+  m.values { |v|
+    v.address @order.address
+  }
+
+  m.members(@order.items) do |member, item|
+    member.link :self, product_url(item.product)
+    member.values { |values|
+      values.id     item.product.id
+      values.name   item.product.name
+      values.price  item.product.price
+      values.quantity  item.quantity
+    }
+  end
+
+end
