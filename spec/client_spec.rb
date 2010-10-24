@@ -44,22 +44,37 @@ describe Restfulie do
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
-      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
-      result = result.order.links.payment.follow.post(card).resource
+      result = pay(result)
       result.order.state.should == "processing_payment"
 
     end
     
-    def wait_for_order_state(state, result, do_what)
-      while result.order.state != "preparing"
-        sleep 10
-        puts "Checking order status at #{result.order.links.self.href}, please #{do_what}"
-        result = result.order.refresh.resource
-      end
-      result
+    def pay(result)
+      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
+      result = result.order.links.payment.follow.post(card).resource
     end
     
-    it "should wait until its preparing" do
+    def wait_payment_success(attempts, result)
+      if attempts==0
+        return result
+      end
+      
+      while result.order.state == "processing_payment"
+        sleep 10
+        puts "Checking order status at #{result.order.links.self.href}"
+        result = result.order.refresh.resource
+      end
+      
+      if result.order.state == "unpaid"
+        puts "Ugh! Payment rejected! Get some credits my boy... I am trying it again."
+        result = pay(result)
+        wait_payment_success(attempts-1, result)
+      else
+        result
+      end
+    end
+    
+    it "should wait until its delivering" do
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
       
@@ -68,11 +83,10 @@ describe Restfulie do
 
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
+
+      result = pay(result)
       
-      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
-      result = result.order.links.payment.follow.post(card).resource
-      
-      result = wait_for_order_state "preparing", result, "confirm its payment as paid."
+      result = wait_payment_success(2, result)
       result.order.state.should == "preparing"
 
     end

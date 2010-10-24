@@ -83,8 +83,14 @@ payment time
 # PART 9: 10 minutes: 9-polling-print-my-receipt
 polling every 10 secs until its confirmed
 
-# PART 10: 5 minutes: 10-self-get-is-refresh
+# PART 10: 5 minutes: 10-refresh-me-baby
 refresh = self.follow.get
+
+# PART 11: 15 minutes: 11-retry-payment
+try to repay up to 3 times
+
+# PART 12: 10 minutes: 12-share-payment
+share the payment with a friend
 
 
 
@@ -105,10 +111,6 @@ tag using uris as ids
 
 tag use-form-to-add
 uses a form to add an item to the basket
-
-tag retry-payment
-fica pingando de 10 em 10 secs e retenta pagar com outros dados
-tenta no maximo 3
 
 tag cancel
 se tentar 3 vezes e nao conseguir, cancela
