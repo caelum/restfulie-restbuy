@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @products = Product.where("name like ?", "%#{params[:q] || ''}%")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.atom {}
       format.xml  { render :xml => @products }
     end
@@ -26,11 +26,6 @@ class ProductsController < ApplicationController
   # GET /products/new.xml
   def new
     @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @product }
-    end
   end
 
   # GET /products/1/edit
