@@ -31,34 +31,24 @@ class ProductsController < ApplicationController
   end
 
   # POST /products
-  # POST /products.xml
   def create
     @product = Product.new(params[:product])
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to(@product, :notice => 'Product was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
   # PUT /products/1
-  # PUT /products/1.xml
   def update
     @product = Product.find(params[:id])
 
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
+    if @product.update_attributes(params[:product])
+      redirect_to(@product, :notice => 'Product was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 

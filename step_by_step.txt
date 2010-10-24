@@ -89,12 +89,51 @@ refresh = self.follow.get
 # PART 11: 15 minutes: 11-retry-payment
 try to repay up twice
 
-# PART 11: 15 minutes: 12-cancel
+# PART 12: 15 minutes: 12-cancel
 if is unable to do it, cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PART 13: render created with restfulie
+
 
 # PART 13: 10 minutes: 13-share-payment
 share the payment with a friend
 
+# PART 14: tag calendar
+mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
+
+# PART 15: tag cancel
+tenha um link chamado cancelar
+basta clicar no link cancelar, ou no link basket ou no link receipt para ver essas coisas
+
+# PART 16: search in another site
+extensao usa opensearch para comprar em varios:
+adicionar um outro site sem ser a "amazon"
+escolhe o mais barato
+
+# PART 17: recomendation on the calendar
+produto sempre mostra reocmendacoes
+calendario visualiza os produtos recomendados e similares
+form com a basket para ja comprar essa recomendacao e qtdes
+
+# PART 18
+AUTHentication
+
+# PART 19
+AUTHorization
 
 
 
@@ -107,12 +146,15 @@ share the payment with a friend
 
 
 THEORY importante fault tolerant: retry to send a post request if broken but with the correct id
+tag WEBSOCKET integration event
+tag RSS feed event
 tag easier render all activerecord fields
 tag easier add relation links
 tag support patch
 tag use xml profiles
 tag using uris as ids
 tag use-form-to-add uses a form to add an item to the basket
+tag extensao callback: so comentar
 
 tag failed-to-deliver
 retenta no maximo 3 vezes
@@ -120,62 +162,16 @@ retenta no maximo 3 vezes
 tag delivered
 se pagou e imprimiu recibo, fica pingando de 10 em 10 secs ate delivered
 
-tag calendar
-mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
-
-tag cancel
-tenha um link chamado cancelar
-basta clicar no link cancelar, ou no link basket ou no link receipt para ver essas coisas
-
-
-
-
-
-event based, da pra fazer algo? que eu leio os deltas de mudancas?
-
-
-
-use forms on creation
-
-
-
-extensao push
-suportar event notification via push e pusher
-
-extensao callback
-NAOOOOO< so comentar
-
+tag use forms on creation
 
 extensao finances:
 ask for auth from bank, use this auth to send to the guy, which authroizes with the bank
 interface to try a second time
 
-
-
-
-extensao usa opensearch para comprar em varios:
-adicionar um outro site sem ser a "amazon"
-escolhe o mais barato
-
-
-
-
 extensao 5:
 a propria "amazon" delega para outro produto, ganhando uma % de comissao
 ????????????????
 
-extensao 6 (de graca):
-produto sempre mostra reocmendacoes
-calendario visualiza os produtos recomendados e similares
-form com a basket para ja comprar essa recomendacao e qtdes
-
-
-
 extensao 7:
 cliente automatizado tambem olha recomendacoes antes de efetuar a compra e manda email com essas recomendacoes
-
-
-
-AUTHorization
-AUTHentication
 
