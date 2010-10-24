@@ -67,6 +67,12 @@ curl http://localhost:3000/products?q=\&format=atom
 # PART 3: 15 minutes: tag 3-create-basket
 creates and redirects to the basket
 
+# PART 4: 15 minutes: tag 4-add-product
+picks the first product from the search and adds to the basket
+
+# PART 5: 10 minutes: restfulie on the server side
+serving atom, xml and json
+simpler tokamak builder
 
 
 
@@ -80,15 +86,12 @@ creates and redirects to the basket
 
 
 
+tag support patch
+tag use xml profiles
+tag using uris as ids
 
-
-
-
-
-
-
-tag add product
-adicionar produto a basket atraves de um form no basket
+tag use-form-to-add
+uses a form to add an item to the basket
 
 tag pay
 pay eh preencher um form no basket

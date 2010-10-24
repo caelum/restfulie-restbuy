@@ -1,0 +1,14 @@
+collection(@products) do |collection|
+
+  collection.link "order", orders_url, "type" => "application/xml"
+  
+  collection.members do |member, product|
+    member.link :self, product_url(product)
+    member.values { |values|
+      values.id     product.id
+      values.name   product.name
+      values.price  product.price
+    }
+  end
+  
+end

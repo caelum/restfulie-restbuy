@@ -14,7 +14,7 @@ describe Restfulie do
       { :order => {:address => "R. Vergueiro 3185, Sao Paulo, Brazil"} }
     end
     
-    it "should have a link to the order" do
+    it "should be able to create an empty order" do
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       response = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
       response = response.resource.links.order.follow.post(my_order)
