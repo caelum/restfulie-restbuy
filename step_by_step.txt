@@ -89,10 +89,10 @@ refresh = self.follow.get
 # PART 11: 15 minutes: 11-retry-payment
 try to repay up twice
 
-# PART 11: 15 minutes: 11-cancel
-se tentar 3 vezes e nao conseguir, cancela
+# PART 11: 15 minutes: 12-cancel
+if is unable to do it, cancel
 
-# PART 12: 10 minutes: 12-share-payment
+# PART 13: 10 minutes: 13-share-payment
 share the payment with a friend
 
 

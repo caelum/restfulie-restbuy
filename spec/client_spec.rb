@@ -4,9 +4,13 @@ describe Restfulie do
   
   context "when searching" do
     
-    it "should be able to search items" do
+    def search(what)
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      items = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      items = description.use("application/atom+xml").search(:searchTerms => what, :startPage => 1)
+    end
+    
+    it "should be able to search items" do
+      items = search("20")
       items.resource.entries.size.should == 2
     end
     
@@ -15,15 +19,13 @@ describe Restfulie do
     end
     
     it "should be able to create an empty order" do
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      response = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      response = search("20")
       response = response.resource.links.order.follow.post(my_order)
       response.resource.order.address.should == my_order[:order][:address]
     end
     
     it "should be able to add an item to an order" do
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      results = search("20")
       
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
@@ -35,8 +37,7 @@ describe Restfulie do
     end
     
     it "should be able to pay" do
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+      results = search("20")
       
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
@@ -55,9 +56,6 @@ describe Restfulie do
     end
     
     def wait_payment_success(attempts, result)
-      if attempts==0
-        return result
-      end
       
       while result.order.state == "processing_payment"
         sleep 10
@@ -65,7 +63,7 @@ describe Restfulie do
         result = result.order.refresh.resource
       end
       
-      if result.order.state == "unpaid"
+      if result.order.state == "unpaid" && attempts>0
         puts "Ugh! Payment rejected! Get some credits my boy... I am trying it again."
         result = pay(result)
         wait_payment_success(attempts-1, result)
@@ -74,9 +72,8 @@ describe Restfulie do
       end
     end
     
-    it "should wait until its delivering" do
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      results = description.use("application/atom+xml").search(:searchTerms => "20", :startPage => 1)
+    it "should try, fail and cancel it" do
+      results = search("20")
       
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
@@ -86,8 +83,10 @@ describe Restfulie do
 
       result = pay(result)
       
-      result = wait_payment_success(2, result)
-      result.order.state.should == "preparing"
+      result = wait_payment_success(1, result)
+      result.order.state.should == "unpaid"
+      result = result.order.links.self.follow.delete.resource
+      result.order.state.should == "cancelled"
 
     end
 
