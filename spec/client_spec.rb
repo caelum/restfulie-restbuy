@@ -43,9 +43,11 @@ describe Restfulie do
 
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
-      result.order.links.payment
-      result.order.price.should == product.price
       
+      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
+      result = result.order.links.payment.follow.post(card).resource
+      result.order.state.should == "processing_payment"
+
     end
     
   end
