@@ -44,6 +44,7 @@ rails g controller Payments create
 rails g controller Admin index update_payment update_order
 
 
+4 min/question in each part
 
 # PART 1: 15 minutes: tag 1-webbuy
 Presenting a server:
@@ -72,7 +73,7 @@ serving atom
 simpler tokamak builder
 
 # PART 6: 5 minutes: tag 6-restfulie-json-xml
-serving json and xml with restfulie products
+serving xml and json with restfulie products
 
 # PART 7: 15 minutes: tag 7-add-product
 picks the first product from the search and adds to the basket
@@ -92,9 +93,25 @@ try to repay up twice
 # PART 12: 15 minutes: 12-cancel
 if is unable to do it, cancel
 
+vendorizing a media type
+client side cache
+must ignore, forward compatibility
+delegating part of the system (payment example)
+error handling
+
+mikyung
 
 
 
+so far:
+presentation: 40min
+tutorial: 2h 10 min
+questions: 44 min
+
+restfulie internal client
+restfulie java,c #, javascript
+
+tag use URI as id
 
 
 
