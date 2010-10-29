@@ -23,6 +23,8 @@ class CalendarController < ApplicationController
         dtend         Date.new(2010, 11, 06)
         summary     "Delivery #{item.product.name}."
         description "The product should be delivered today. #{links.to_s}"
+        add_attach    order_url(@order), {"FMTTYPE" => "application/xml"} # email attachments (optional)
+              # attach "xpto"
         klass       "PUBLIC"
       end
     end
