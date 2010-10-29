@@ -122,8 +122,11 @@ comment on link header
 
 gem install heroku
 
-# PART 19: 10 minutes: 18-add-calendar-suggestion-with-form
+# PART 19: 10 minutes: 19-add-calendar-suggestion-with-form
 extra suggestion with form
+every time the person opens any of his system, he breathes your system
+i.e. in his company system and sees his training, he would
+be able to recommend it to someone, or enroll to other trainings, see his colleages emails and os on
 
 
 
