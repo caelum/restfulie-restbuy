@@ -15,6 +15,7 @@ class CalendarController < ApplicationController
       :cancel => order_url(@order)
     })
     
+    uri = order_url(@order)
     cal = Calendar.new
       order = @order
       @order.items.each do |item|
@@ -23,7 +24,7 @@ class CalendarController < ApplicationController
         dtend         Date.new(2010, 11, 06)
         summary     "Delivery #{item.product.name}."
         description "The product should be delivered today. #{links.to_s}"
-        add_attach    order_url(@order), {"FMTTYPE" => "application/xml"} # email attachments (optional)
+        add_attach    uri, {"FMTTYPE" => "application/xml"} # email attachments (optional)
               # attach "xpto"
         klass       "PUBLIC"
       end
