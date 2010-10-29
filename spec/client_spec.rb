@@ -5,7 +5,7 @@ describe Restfulie do
   context "when searching" do
     
     def search(what)
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      description = Restfulie.at("http://localhost:1500/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       items = description.use("application/atom+xml").search(:searchTerms => what, :startPage => 1)
     end
     
@@ -29,9 +29,10 @@ describe Restfulie do
       
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
-
+    
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
+      
       result.order.price.should == product.price
       
     end
@@ -41,13 +42,13 @@ describe Restfulie do
       
       product = results.resource.entries[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
-
+    
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
       result = pay(result)
       result.order.state.should == "processing_payment"
-
+    
     end
     
     def pay(result)
@@ -80,7 +81,7 @@ describe Restfulie do
 
       result = results.resource.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
-
+      
       result = pay(result)
       
       result = wait_payment_success(1, result)

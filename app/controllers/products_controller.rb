@@ -1,4 +1,4 @@
-require 'restfulie/server/responder'
+require 'respondie'
 
 class ProductsController < ApplicationController
   

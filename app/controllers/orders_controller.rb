@@ -1,3 +1,5 @@
+require 'respondie'
+
 class OrdersController < ApplicationController
   
   use_trait {cacheable}
@@ -8,7 +10,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @payment = Payment.new
-    respond_with @order, :expires_in => 0.minutes
+    respond_with @order, :expires_in => 0.seconds
   end
 
   # POST /orders
