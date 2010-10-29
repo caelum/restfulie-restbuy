@@ -124,9 +124,6 @@ comment on link header
 gem install heroku
 show information on your order
 
-
-
-
 # PART 20: 10 minutes: 20-integrate-and-profit
 extra suggestion with form
 every time the person opens any of his system, he breathes your system
@@ -134,6 +131,11 @@ every time the person opens any of his system, he breathes your system
 
 i.e. in his company system and sees his training, he would
 be able to recommend it to someone, or enroll to other trainings, see his colleages emails and os on
+
+
+
+
+
 
 
 refactoring

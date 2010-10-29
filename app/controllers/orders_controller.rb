@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new
+    @order.expected_delivery = Time.now + 3.days
     @order.address = params[:order][:address]
     @order.state = "unpaid"
     @order.save

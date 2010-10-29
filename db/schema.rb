@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022121140) do
+ActiveRecord::Schema.define(:version => 20101029154250) do
 
   create_table "items", :force => true do |t|
     t.integer  "product_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20101022121140) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "expected_delivery"
   end
 
   create_table "payments", :force => true do |t|

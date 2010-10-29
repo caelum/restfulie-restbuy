@@ -1,6 +1,10 @@
 class CalendarController < ApplicationController
 
   respond_to :html, :xml, :json, :atom
+  
+  def time_to_date(t)
+    t.strftime("%Y%m%d")
+  end
 
   # GET /orders/1/calendar
   def show
@@ -19,12 +23,23 @@ CALSCALE:GREGORIAN
 PRODID:iCalendar-Master
 VERSION:2.0
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:20101105
-DTEND;VALUE=DATE:20101105
-SUMMARY:Buying order #{@order.id}
+DTSTART;VALUE=DATE:#{time_format(order.expected_delivery)}
+DTEND;VALUE=DATE:#{time_format(order.expected_delivery)}
+SUMMARY:Delivering order #{@order.id}
 X-GOOGLE-CALENDAR-CONTENT-TITLE:Buying order #{@order.id}
 X-GOOGLE-CALENDAR-CONTENT-ICON:http://www.google.com/calendar/images/google-holiday.gif
 X-GOOGLE-CALENDAR-CONTENT-URL:#{order_url(@order)}
+X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
+X-GOOGLE-CALENDAR-CONTENT-WIDTH:640
+X-GOOGLE-CALENDAR-CONTENT-HEIGHT:480
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:#{time_format(order.expected_delivery+2.days)}
+DTEND;VALUE=DATE:#{time_format(order.expected_delivery+2.days)}
+SUMMARY:Recommended products
+X-GOOGLE-CALENDAR-CONTENT-TITLE:Recommended products
+X-GOOGLE-CALENDAR-CONTENT-ICON:#{url_for("/images/recommended.png")}
+X-GOOGLE-CALENDAR-CONTENT-URL:#{recommended_url(@order)}
 X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
 X-GOOGLE-CALENDAR-CONTENT-WIDTH:640
 X-GOOGLE-CALENDAR-CONTENT-HEIGHT:480

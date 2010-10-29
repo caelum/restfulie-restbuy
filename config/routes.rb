@@ -16,6 +16,7 @@ Restbuy::Application.routes.draw do
   resources :orders do
     resources :payments, :only => :create
     resource :calendar, :only => :show, :controller => :calendar
+    resource :recommendation, :only => :show, :controller => :recommendation
   end
 
   resources :products, :only => [:create, :index, :show, :edit, :new]

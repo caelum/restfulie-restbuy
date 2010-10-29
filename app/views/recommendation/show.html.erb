@@ -1,0 +1,7 @@
+<h1>Recommendations</h1>
+
+<ul>
+<% @recommendations.each do |r| %>
+	<li><%= link_to r.name, product_url(r) %></li>
+<% end %>
+</ul>
