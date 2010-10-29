@@ -8,6 +8,7 @@ gem 'debuggie'
 gem 'respondie'
 
 gem 'relata'
+gem 'icalendar'
 
 group :development, :test do
 	gem "rspec-rails", ">= 2.0.0.beta.19"

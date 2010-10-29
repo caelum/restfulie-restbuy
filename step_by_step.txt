@@ -112,7 +112,20 @@ extract it
 share the payment with a friend
 
 # PART 17: 10 minutes: 17-calendar
-mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
+rails g controller Calendar show
+curl http://localhost:3000/orders/192.xml -i
+curl http://localhost:3000/orders/192/calendar -i
+
+# PART 18: 10 minutes: 18-add-calendar-tracking-and-cancel
+tenha um link chamado cancelar
+basta clicar no link cancelar, ou no link basket ou no link receipt para ver essas coisas
+link para a order
+
+
+
+
+
+
 
 
 
@@ -181,10 +194,6 @@ tag use URI as id
 
 
 
-
-# PART 15: tag cancel
-tenha um link chamado cancelar
-basta clicar no link cancelar, ou no link basket ou no link receipt para ver essas coisas
 
 # PART 16: search in another site
 extensao usa opensearch para comprar em varios:

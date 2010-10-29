@@ -2,6 +2,7 @@ member(@order) do |m|
   
   m.link "self", order_url(@order)
   m.link "payment", order_payments_url(@order), "type" => "application/xml"
+  m.link "calendar", order_calendar_url(@order), "type" => "text/calendar"
   m.values { |v|
     v.address @order.address
     v.price @order.price

@@ -1,4 +1,5 @@
 Restbuy::Application.routes.draw do
+
   put "admin/update_order"
 
   get "admin/index"
@@ -14,6 +15,7 @@ Restbuy::Application.routes.draw do
 
   resources :orders do
     resources :payments, :only => :create
+    resource :calendar, :only => :show, :controller => :calendar
   end
 
   resources :products, :only => [:create, :index, :show, :edit, :new]
