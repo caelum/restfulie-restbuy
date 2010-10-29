@@ -5,6 +5,7 @@ gem 'rails', '3.0.0'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'restfulie', ">= 0.9.3"
 gem 'debuggie'
+gem 'respondie'
 
 gem 'relata'
 

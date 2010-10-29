@@ -86,7 +86,6 @@ describe Restfulie do
       result = wait_payment_success(1, result)
       result.order.state.should == "unpaid"
       result = result.order.links.self.follow.delete.resource
-      result.order.state.should == "cancelled"
 
     end
 

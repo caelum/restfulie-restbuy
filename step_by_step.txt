@@ -46,6 +46,9 @@ rails g controller Admin index update_payment update_order
 
 4 min/question in each part
 
+SLIDES
+http://caelumobjects.com/training/
+
 # PART 1: 15 minutes: tag 1-webbuy
 Presenting a server:
 - create
@@ -93,12 +96,20 @@ try to repay up twice
 # PART 12: 15 minutes: 12-cancel
 if is unable to do it, cancel
 
-vendorizing a media type
+# PART 13: 15 minutes: 13-expire-header
 client side cache
+
+
+
+
+conditional request: GET
+conditional request: PUT
+
 must ignore, forward compatibility
 delegating part of the system (payment example)
 error handling
 
+vendorizing a media type ou profile
 mikyung
 
 
