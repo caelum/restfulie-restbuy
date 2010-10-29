@@ -100,9 +100,13 @@ if is unable to do it, cancel
 client side cache
 curl http://localhost:3000/products/1.xml -i
 
-# PART 14: 10 minutes: render created with restfulie
+# PART 14: 10 minutes: 14-create-trait
+server create is a trait
 show created Trait code
 curl http://localhost:3000/products -H "Content-type: application/xml" -H "Accept: application/xml" -d "<product><name>architecture by architects</name><price>300</price></product>" -i
+
+# PART 15: 2 minutes: 15-created-trait-exists
+extract it
 
 # PART 14: 10 minutes: 14-error-handling
 
