@@ -1,12 +1,14 @@
 class OrdersController < ApplicationController
   
+  use_trait {cacheable}
+
   respond_to :html, :xml, :json, :atom
 
   # GET /orders/1
   def show
     @order = Order.find(params[:id])
     @payment = Payment.new
-    respond_with @order
+    respond_with @order, :expires_in => 0.minutes
   end
 
   # POST /orders
