@@ -52,7 +52,7 @@ describe Restfulie do
     end
     
     def pay(result)
-      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
+      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price.to_f / 2}}
       result = result.order.links.payment.follow.post(card).resource
     end
     
@@ -85,7 +85,7 @@ describe Restfulie do
       result = pay(result)
       
       result = wait_payment_success(1, result)
-      result.order.state.should == "unpaid"
+      result.order.state.should == "preparing"
       result = result.order.links.self.follow.delete.resource
 
     end

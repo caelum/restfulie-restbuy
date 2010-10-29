@@ -108,7 +108,26 @@ curl http://localhost:3000/products -H "Content-type: application/xml" -H "Accep
 # PART 15: 2 minutes: 15-created-trait-exists
 extract it
 
-# PART 14: 10 minutes: 14-error-handling
+# PART 16: 10 minutes: 16-share-payment
+share the payment with a friend
+
+# PART 17: 10 minutes: 17-calendar
+mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
+
+
+
+
+
+
+
+
+with mikyung
+# PART : 10 minutes: -error-handling
+
+# PART : 10 minutes: supporting PATCH
+
+# PART : 10 minutes: supporting a profile 
+
 
 
 
@@ -126,6 +145,8 @@ delegating part of the system (payment example)
 
 
 
+
+
 # PART 14: 5 minutes: 14-cache-polling
 conditional request on GET
 sudo varnishd -a 127.0.0.1:1500 -b 127.0.0.1:3000 -s file,/tmp,500M
@@ -139,11 +160,6 @@ conditional request: PUT
 
 
 RELAXNG example: must ignore, forward compatibility
-
-vendorizing a media type ou profile
-mikyung
-
-
 
 so far:
 presentation: 40min
@@ -165,12 +181,6 @@ tag use URI as id
 
 
 
-
-# PART 13: 10 minutes: 13-share-payment
-share the payment with a friend
-
-# PART 14: tag calendar
-mostra a data estimada de entrega no google calendar atraves de um link rel="calendar"
 
 # PART 15: tag cancel
 tenha um link chamado cancelar
