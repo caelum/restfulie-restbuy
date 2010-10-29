@@ -37,7 +37,7 @@ DTSTART;VALUE=DATE:#{time_format(@order.expected_delivery+2.days)}
 DTEND;VALUE=DATE:#{time_format(@order.expected_delivery+2.days)}
 SUMMARY:Recommended products
 X-GOOGLE-CALENDAR-CONTENT-TITLE:Recommended products
-X-GOOGLE-CALENDAR-CONTENT-ICON:#{url_for("/images/recommended.png")}
+X-GOOGLE-CALENDAR-CONTENT-ICON:http://restbuy.heroku.com/images/recommended.png
 X-GOOGLE-CALENDAR-CONTENT-URL:#{order_recommendation_url(@order)}
 X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
 X-GOOGLE-CALENDAR-CONTENT-WIDTH:640
