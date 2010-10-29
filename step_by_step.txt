@@ -120,6 +120,8 @@ curl http://localhost:3000/orders/192/calendar -i
 link cancel, order, receipt, tracking
 comment on link header
 
+gem install heroku
+
 # PART 19: 10 minutes: 18-add-calendar-suggestion-with-form
 extra suggestion with form
 
