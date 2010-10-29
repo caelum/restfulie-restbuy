@@ -100,9 +100,11 @@ if is unable to do it, cancel
 client side cache
 curl http://localhost:3000/products/1.xml -i
 
-# PART 14: 5 minutes: 14-error-handling
+# PART 14: 10 minutes: render created with restfulie
+show created Trait code
+curl http://localhost:3000/products -H "Content-type: application/xml" -H "Accept: application/xml" -d "<product><name>architecture by architects</name><price>300</price></product>" -i
 
-
+# PART 14: 10 minutes: 14-error-handling
 
 
 
@@ -114,6 +116,8 @@ delegating part of the system (payment example)
 -- create another system that accepts the payment
 -- delegate the payment status method for that system
 
+# PART 14: relata
+# PART 15: opensearchie
 
 
 
@@ -157,9 +161,6 @@ tag use URI as id
 
 
 
-# PART 13: render created with restfulie
-# PART 14: relata
-# PART 15: opensearchie
 
 # PART 13: 10 minutes: 13-share-payment
 share the payment with a friend

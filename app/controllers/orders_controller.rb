@@ -1,8 +1,6 @@
-require 'respondie'
-
 class OrdersController < ApplicationController
   
-  use_trait {cacheable}
+  use_trait {cacheable; created}
 
   respond_to :html, :xml, :json, :atom
 
@@ -23,11 +21,7 @@ class OrdersController < ApplicationController
       @order.items.create :product => Product.find(params[:order][:product]), :quantity => params[:order][:quantity]
     end
     session[:order] = @order
-
-    respond_to do |format|
-      format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-      format.xml  { render :status => 201, :location => order_url(@order), :text => "" }
-    end
+    respond_with @order, :status => 201
   end
 
   # PUT /orders/1

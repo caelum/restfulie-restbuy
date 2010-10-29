@@ -1,8 +1,6 @@
-require 'respondie'
-
 class ProductsController < ApplicationController
   
-  use_trait {cacheable}
+  use_trait {cacheable; created}
   
   respond_to :html, :atom, :json, :xml
 
@@ -32,7 +30,7 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     if @product.save
-      redirect_to(@product, :notice => 'Product was successfully created.')
+      respond_with @product, :status => 201
     else
       render :action => "new"
     end
