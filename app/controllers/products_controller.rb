@@ -1,9 +1,12 @@
+require 'restfulie/server/responder'
+
 class ProductsController < ApplicationController
+  
+  use_trait {cacheable}
   
   respond_to :html, :atom, :json, :xml
 
   def index
-    # @products = Product.where {name.like? "%#{params[:q] || ''}%"}
     @products = Product.where("name like ?", "%#{params[:q] || ''}%")
     respond_with @products
   end
@@ -11,11 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   def show
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @product }
-    end
+    respond_with @product, :expires_in => 10.minutes
   end
 
   # GET /products/new
