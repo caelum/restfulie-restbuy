@@ -28,6 +28,8 @@ X-GOOGLE-CALENDAR-CONTENT-TITLE:Buying order #{@order.id}
 X-GOOGLE-CALENDAR-CONTENT-ICON:http://www.google.com/calendar/images/google-holiday.gif
 X-GOOGLE-CALENDAR-CONTENT-URL:#{order_url(@order)}
 X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
+X-GOOGLE-CALENDAR-CONTENT-WIDTH:640
+X-GOOGLE-CALENDAR-CONTENT-HEIGHT:480
 END:VEVENT
 END:VCALENDAR"
     render :text => content
