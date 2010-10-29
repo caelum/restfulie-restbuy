@@ -120,11 +120,20 @@ curl http://localhost:3000/orders/192/calendar -i
 link cancel, order, receipt, tracking
 comment on link header
 
-gem install heroku
 
-# PART 19: 10 minutes: 19-add-calendar-suggestion-with-form
+
+
+
+
+# PART 19: 10 minutes: 19-show-content-in-other-system
+gem install heroku
+show information on tracking and cancel at heroku
+
+# PART 20: 10 minutes: 19-add-calendar-suggestion-with-form
 extra suggestion with form
 every time the person opens any of his system, he breathes your system
+2 days after delivery, suggest a new product through his calendar
+
 i.e. in his company system and sees his training, he would
 be able to recommend it to someone, or enroll to other trainings, see his colleages emails and os on
 
