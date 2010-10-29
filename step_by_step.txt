@@ -120,16 +120,14 @@ curl http://localhost:3000/orders/192/calendar -i
 link cancel, order, receipt, tracking
 comment on link header
 
-
-
-
-
-
 # PART 19: 10 minutes: 19-show-content-in-other-system
 gem install heroku
-show information on tracking and cancel at heroku
+show information on your order
 
-# PART 20: 10 minutes: 19-add-calendar-suggestion-with-form
+
+
+
+# PART 20: 10 minutes: 20-integrate-and-profit
 extra suggestion with form
 every time the person opens any of his system, he breathes your system
 2 days after delivery, suggest a new product through his calendar
@@ -138,46 +136,24 @@ i.e. in his company system and sees his training, he would
 be able to recommend it to someone, or enroll to other trainings, see his colleages emails and os on
 
 
-
-
-
-
-
-
-
-
-
-
-
-# PART : 10 minutes: -error-handling
-with mikyung
-
-# PART : 10 minutes: supporting a profile 
-
 refactoring
 # PART : 10 minutes: supporting PATCH
-# PART 14: relata
-# PART 15: opensearchie
+# PART 14: relata, opensearchie
+
+# PART : 10 minutes: -error-handling
+
+# with mikyung
+
+# PART : 10 minutes: supporting a profile 
 
 # PART 16: search in another site
 extensao usa opensearch para comprar em varios:
 adicionar um outro site sem ser a "amazon"
 escolhe o mais barato
 
-
-
-
-
-
 delegating part of the system (payment example)
 -- create another system that accepts the payment
 -- delegate the payment status method for that system
-
-
-
-
-
-
 
 # PART 14: 5 minutes: 14-cache-polling
 conditional request on GET
@@ -186,10 +162,6 @@ curl http://localhost:3000/orders/1.xml -i
 
 # PART XX
 conditional request: PUT
-
-
-
-
 
 RELAXNG example: must ignore, forward compatibility
 
@@ -202,6 +174,20 @@ restfulie internal client
 restfulie java,c #, javascript
 
 tag use URI as id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
