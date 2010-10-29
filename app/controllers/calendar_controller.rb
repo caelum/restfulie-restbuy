@@ -23,7 +23,7 @@ class CalendarController < ApplicationController
         dtend         Date.new(2010, 11, 06)
         summary     "Delivery #{item.product.name}."
         description "The product should be delivered today. #{links.to_s}"
-        klass       "PRIVATE"
+        klass       "PUBLIC"
       end
     end
 
