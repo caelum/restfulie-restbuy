@@ -5,7 +5,7 @@ describe Restfulie do
   context "when searching" do
     
     def search(what)
-      description = Restfulie.at("http://localhost:1500/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      description = Restfulie.at("http://restbuy.heroku.com/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       items = description.use("application/atom+xml").search(:searchTerms => what, :startPage => 1)
     end
     
@@ -52,7 +52,7 @@ describe Restfulie do
     end
     
     def pay(result)
-      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price.to_f / 2}}
+      card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
       result = result.order.links.payment.follow.post(card).resource
     end
     
@@ -73,7 +73,7 @@ describe Restfulie do
       end
     end
     
-    it "should try, fail and cancel it" do
+    it "should try and pay for it" do
       results = search("20")
       
       product = results.resource.entries[0]
@@ -86,7 +86,6 @@ describe Restfulie do
       
       result = wait_payment_success(1, result)
       result.order.state.should == "preparing"
-      result = result.order.links.self.follow.delete.resource
 
     end
 

@@ -140,14 +140,20 @@ be able to recommend it to someone, or enroll to other trainings, see his collea
 
 
 
-with mikyung
 # PART : 10 minutes: -error-handling
-
-# PART : 10 minutes: supporting PATCH
+with mikyung
 
 # PART : 10 minutes: supporting a profile 
 
+refactoring
+# PART : 10 minutes: supporting PATCH
+# PART 14: relata
+# PART 15: opensearchie
 
+# PART 16: search in another site
+extensao usa opensearch para comprar em varios:
+adicionar um outro site sem ser a "amazon"
+escolhe o mais barato
 
 
 
@@ -158,8 +164,6 @@ delegating part of the system (payment example)
 -- create another system that accepts the payment
 -- delegate the payment status method for that system
 
-# PART 14: relata
-# PART 15: opensearchie
 
 
 
@@ -201,10 +205,6 @@ tag use URI as id
 
 
 
-# PART 16: search in another site
-extensao usa opensearch para comprar em varios:
-adicionar um outro site sem ser a "amazon"
-escolhe o mais barato
 
 # PART 18
 AUTHentication
@@ -226,18 +226,10 @@ THEORY importante fault tolerant: retry to send a post request if broken but wit
 tag WEBSOCKET integration event
 tag RSS feed event
 tag easier render all activerecord fields
-tag easier add relation links
-tag support patch
 tag use xml profiles
 tag using uris as ids
 tag use-form-to-add uses a form to add an item to the basket
 tag extensao callback: so comentar
-
-tag failed-to-deliver
-retenta no maximo 3 vezes
-
-tag delivered
-se pagou e imprimiu recibo, fica pingando de 10 em 10 secs ate delivered
 
 tag use forms on creation
 
