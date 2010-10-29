@@ -17,19 +17,19 @@ class CalendarController < ApplicationController
     
     uri = order_url(@order)
     content = "BEGIN:VCALENDAR
-    CALSCALE:GREGORIAN
-    PRODID:iCalendar-Master
-    VERSION:2.0
-    BEGIN:VEVENT
-    DTSTART;VALUE=DATE:20101105
-    DTEND;VALUE=DATE:20101105
-    SUMMARY:Buying order #{@order.id}
-    X-GOOGLE-CALENDAR-CONTENT-TITLE:Buying order #{@order.id}
-    X-GOOGLE-CALENDAR-CONTENT-ICON:http://www.google.com/calendar/images/google-holiday.gif
-    X-GOOGLE-CALENDAR-CONTENT-URL:#{order_url(@order)}
-    X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
-    END:VEVENT
-    END:VCALENDAR"
+CALSCALE:GREGORIAN
+PRODID:iCalendar-Master
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20101105
+DTEND;VALUE=DATE:20101105
+SUMMARY:Buying order #{@order.id}
+X-GOOGLE-CALENDAR-CONTENT-TITLE:Buying order #{@order.id}
+X-GOOGLE-CALENDAR-CONTENT-ICON:http://www.google.com/calendar/images/google-holiday.gif
+X-GOOGLE-CALENDAR-CONTENT-URL:#{order_url(@order)}
+X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
+END:VEVENT
+END:VCALENDAR"
     render :text => content
   end
 
