@@ -7,7 +7,7 @@ class Links
   end
   def to_s
     @links.inject("") do |content, link|
-      content + link[0] + ","
+      content + link[0].to_s + ","
       # content + "ATTACH:FMTTYPE"
       # content + "\n<a href=\"#{link[1]}\" rel=\"#{link[0]}\">#{link[0]}</a>"
     end
