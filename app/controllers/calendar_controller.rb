@@ -16,21 +16,21 @@ class CalendarController < ApplicationController
     })
     
     uri = order_url(@order)
-    cal = Calendar.new
-      order = @order
-      @order.items.each do |item|
-      cal.event do
-        dtstart       Date.new(2010, 11, 05)
-        dtend         Date.new(2010, 11, 06)
-        summary     "Delivery #{item.product.name}."
-        description "The product should be delivered today. #{links.to_s}"
-        add_attach    uri, {"FMTTYPE" => "application/html"} # email attachments (optional)
-              # attach "xpto"
-        klass       "PUBLIC"
-      end
-    end
-
-    render :text => cal.to_ical
+    content = "BEGIN:VCALENDAR
+    CALSCALE:GREGORIAN
+    PRODID:iCalendar-Master
+    VERSION:2.0
+    BEGIN:VEVENT
+    DTSTART;VALUE=DATE:20101105
+    DTEND;VALUE=DATE:20101105
+    SUMMARY:Buying order #{@order.id}
+    X-GOOGLE-CALENDAR-CONTENT-TITLE:Buying order #{@order.id}
+    X-GOOGLE-CALENDAR-CONTENT-ICON:http://www.google.com/calendar/images/google-holiday.gif
+    X-GOOGLE-CALENDAR-CONTENT-URL:#{order_url(@order)}
+    X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html
+    END:VEVENT
+    END:VCALENDAR"
+    render :text => content
   end
 
 end
