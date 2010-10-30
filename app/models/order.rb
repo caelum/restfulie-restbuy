@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
   end
   
   def state
+    return "preparing" if completely_paid? && super=="unpaid"
     return super if completely_paid? || super=="cancelled"
     return "processing_payment" if is_processing_payment?
     return "partially_paid" if paid > 0
