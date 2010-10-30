@@ -14,6 +14,11 @@ class Order < ActiveRecord::Base
     return "unpaid"
   end
   
+  def payments
+    response = Restfulie.at("http://localhost:3100/payments/restbuy/#{id}").accepts("application/xml").get
+    response.resource.payments
+  end
+  
   def is_processing_payment?
     payments.detect do |p|
       p.state == "processing"
