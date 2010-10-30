@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
   
-  use_trait {cacheable; created}
+  use_trait {cacheable; created; save_prior_to_create}
   
   respond_to :html, :atom, :json, :xml
 
   def index
-    @products = Product.where("name like ?", "%#{params[:q] || ''}%")
+    query = params[:q] || ''
+    @products = Product.where(:name).like("%#{query}%")
     respond_with @products
   end
 
@@ -28,12 +29,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(params[:product])
-
-    if @product.save
-      respond_with @product, :status => 201
-    else
-      render :action => "new"
-    end
+    respond_with @product, :status => 201
   end
 
   # PUT /products/1
