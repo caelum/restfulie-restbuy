@@ -72,7 +72,7 @@ curl http://localhost:3000/products?q=\&format=atom
 # PART 3: 10 minutes: tag 3-create-basket
 creates and redirects to the basket
 
-# PART 5: 15 minutes: tag 5-restfulie-atom
+# PART 5: 10 minutes: tag 5-restfulie-atom
 serving atom
 simpler tokamak builder
 
