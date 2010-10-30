@@ -88,6 +88,8 @@ payment time
 
 # PART 9: 10 minutes: 9-polling-print-my-receipt
 polling every 10 secs until its confirmed
+- mention WEBSOCKET integration event
+- mention RSS feed event
 
 # PART 10: 5 minutes: 10-refresh-me-baby
 refresh = self.follow.get
@@ -144,7 +146,7 @@ be able to recommend it to someone, or enroll to other trainings, see his collea
 # PART 21: 5 min: 21-relata-and-trait
 refactoring bonus
 
-# PART 22: 15 min: 22-heroku-pays-and-cache-heaven
+# PART 22: 20 min: 22-heroku-pays-and-cache-heaven
 delegating part of the system (payment example)
 rails new restpay
 rails g model payment value:decimal order_id:integer  card_number:string card_holder:string state:string system_id:string resource_id:string
@@ -160,149 +162,27 @@ Payment.approve_all
 huge cache benefits
 polling benefits
 
+# PART 23: 15 min: 23-mentions
+- mention: evolution: invoking another system
+- mention: RELAXNG example: must ignore, forward compatibility
+- mention: supporting PATCH
+- mention: supporting a profile 
+- mention: search in another site
+- mention: AUTHentication
+- mention: AUTHorization
+- mention: bank, the ruler
+- mention: tag use-form-to-add uses a form to add an item to the basket
 
 
-40 min left
 
-rollback the payment system
-
-# PART : 10 minutes: -error-handling
+# PART : ? minutes: -error-handling
 # with mikyung (comment on error handling and only show mikyung as an esb/camel alternative)
 
-
-
-
-
-
-
-
-
-at some point the payment system with varnish cache
-
-
-
-
-
-
-50 min
-
-
-
-# PART 14: 5 minutes: 14-cache-polling
-conditional request on GET
-sudo varnishd -a 127.0.0.1:1500 -b 127.0.0.1:3000 -s file,/tmp,500M
-curl http://localhost:3000/orders/1.xml -i
-
-
-
-
-# PART : 10 minutes: supporting PATCH
-refactor respondie: to_format should be execute
-
-
-
-
-
-
-
-AVIAO
-
-
-
-# PART : 10 minutes: supporting a profile 
-
-# PART 16: search in another site
-extensao usa opensearch para comprar em varios:
-adicionar um outro site sem ser a "amazon"
-escolhe o mais barato
-
-
-# PART XX
-conditional request: PUT
-
-RELAXNG example: must ignore, forward compatibility
+# PART :
+- conditional put (fault tolerant)
 
 so far:
 5:30
 presentation: 40min
 tutorial: 3h 10min
 questions: 3min x 20 * 0.8 = 48 min
-
-restfulie internal client
-restfulie java,c #, javascript
-
-tag use URI as id
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# PART 18
-AUTHentication
-
-# PART 19
-AUTHorization
-
-
-
-
-
-
-
-
-
-
-
-THEORY importante fault tolerant: retry to send a post request if broken but with the correct id
-tag WEBSOCKET integration event
-tag RSS feed event
-tag easier render all activerecord fields
-tag use xml profiles
-tag using uris as ids
-tag use-form-to-add uses a form to add an item to the basket
-tag extensao callback: so comentar
-
-tag use forms on creation
-
-extensao finances:
-ask for auth from bank, use this auth to send to the guy, which authroizes with the bank
-interface to try a second time
