@@ -1,3 +1,5 @@
+require 'relata/dsl'
+
 class ProductsController < ApplicationController
   
   use_trait {cacheable; created; save_prior_to_create}
@@ -6,7 +8,7 @@ class ProductsController < ApplicationController
 
   def index
     query = params[:q] || ''
-    @products = Product.where(:name).like("%#{query}%")
+    @products = Product.where(:name).like?("%#{query}%")
     respond_with @products
   end
 
