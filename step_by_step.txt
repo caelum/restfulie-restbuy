@@ -144,12 +144,35 @@ be able to recommend it to someone, or enroll to other trainings, see his collea
 # PART 21: 5 min: 21-relata-and-trait
 refactoring bonus
 
-# PART 22: 10 min: 22-heroku-pays
+# PART 22: 15 min: 22-heroku-pays-and-cache-heaven
 delegating part of the system (payment example)
 rails new restpay
 rails g model payment value:decimal order_id:integer  card_number:string card_holder:string state:string system_id:string resource_id:string
 rails g controller Payments create show
 rake db:create db:migrate
+rails s --port=3100
+show approval on the console
+sudo varnishd -a 127.0.0.1:3100 -b 127.0.0.1:3101 -s file,/tmp,500M
+varnishstat -w 5
+rails s --port=3101
+rails c
+Payment.approve_all
+huge cache benefits
+polling benefits
+
+
+
+40 min left
+
+rollback the payment system
+
+# PART : 10 minutes: -error-handling
+# with mikyung (comment on error handling and only show mikyung as an esb/camel alternative)
+
+
+
+
+
 
 
 
@@ -162,8 +185,6 @@ at some point the payment system with varnish cache
 
 
 50 min
-# PART : 10 minutes: -error-handling
-# with mikyung (comment on error handling and only show mikyung as an esb/camel alternative)
 
 
 
