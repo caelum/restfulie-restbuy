@@ -1,0 +1,73 @@
+html {
+  background: rgb(51,102,153);
+}
+
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
+}
+
+#header {
+  height: 80px;
+}
+
+.logo {
+  color: rgb(255,255,255);
+  font: bold 197% "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
+  margin-left: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+#main_nav {
+  color: rgb(204,204,204);
+  float: right;
+  margin: 27px 0px;
+}
+
+#main_nav li {
+  display: inline;
+  list-style: none;
+}
+
+#main_nav li a:link,
+#main_nav li a:visited,
+#main_nav li a:hover,
+#main_nav li a:active {
+  color: rgb(204,204,204);
+  display: inline-block;
+  padding: 5px;
+  text-decoration: none;
+}
+
+#main_nav li a:hover {
+  background: rgb(255,255,255);
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  color: rgb(0,51,102);
+}
+
+#content {
+  background: rgb(255,255,255);
+  padding: 10px;
+  width: 940px;
+}
+
+#footer {
+  background: rgb(153,153,153);
+  margin-top: 25px;
+  padding: 5px;
+  text-align: right;
+  width: 950px;
+}
+
+#footer a:link,
+#footer a:visited,
+#footer a:hover,
+#footer a:active {
+  color: rgb(204,204,204);
+  font: bold 77% "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: rgb(255,255,255);
+}
