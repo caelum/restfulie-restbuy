@@ -173,17 +173,6 @@ polling benefits
 - mention: AUTHorization
 - mention: bank, the ruler
 - mention: tag use-form-to-add uses a form to add an item to the basket
-
-
-
-# PART : ? minutes: -error-handling
-# with mikyung (comment on error handling and only show mikyung as an esb/camel alternative)
-
-# PART :
-- conditional put (fault tolerant)
-
-so far:
-5:30
-presentation: 40min
-tutorial: 3h 10min
-questions: 3min x 20 * 0.8 = 48 min
+- mention :error handling
+- mention : conditional put (faul tolerant)
+- mention: mikyung/camel/esbs
