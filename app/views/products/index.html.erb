@@ -1,18 +1,15 @@
-<div class="grid_12 clearfix">
-
+<div class="grid_12 clearfix page_title">
   <h1 id="page_title">Our Products</h1>
-
   <form id="filter_form" action="<%= products_path %>">
     Filter: <input name="q" value="<%= params[:q]%>" /> <input type="submit" value="filter" />
   </form>  
-
 </div>
 
 <% @products.each do |product| %>
 <div id="<%= "product-#{product.id}" %>" class="grid_10 clearfix product omega">
   <h3><%= product.name %></h3>
   <p class="price"><%= number_to_currency product.price, :unit => "$" %></p>
-  <ul class="admin_menu">
+  <ul class="admin_nav">
     <li><%= link_to "Details", product %> |</li>
     <li><%= link_to "Edit", edit_product_path(product) %> |</li>
     <li><%= link_to "Delete", product, :confirm => "Are you sure?\nThis operation cannot be undone.", :method => :delete %></li>
@@ -20,11 +17,11 @@
 </div>
 <div class="grid_2 add_product alpha">
   <p>Buy now!</p>
-  <input type="number" id="product_<%=product.id%>" value="1" />
+  <input type="number" id="product_<%=product.id%>" value="1" min="1" />
   <% if current_order %>
-  <input type="button" onclick="add(<%=product.id%>);" value="add to current order">
+  <input type="button" onclick="add(<%=product.id%>);" value="Add to current order">
   <% else %>
-  <input type="button" onclick="create(<%=product.id%>);" value="add to order">
+  <input type="button" onclick="create(<%=product.id%>);" value="Add to order">
   <% end %>
 </div>
 <% end %>  

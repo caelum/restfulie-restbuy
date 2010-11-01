@@ -1,8 +1,9 @@
 html {
-  background: rgb(51,102,153);
+  background: rgb(119,136,153);
 }
 
 body {
+  color: rgb(51,51,51);
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
 }
 
@@ -16,7 +17,7 @@ body {
   color: rgb(255,255,255);
   font: bold 197% "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
   margin-left: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 #main_nav {
@@ -43,7 +44,7 @@ body {
 #main_nav li a:hover {
   background: rgb(255,255,255);
   border-radius: 4px;
-  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
   color: rgb(0,51,102);
 }
 
@@ -51,6 +52,7 @@ body {
 
 #content {
   background: rgb(255,255,255);
+  -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 #page_title {
@@ -58,9 +60,36 @@ body {
   margin-left: 20px;
 }
 
+.page_title {
+  background: rgb(51,102,143);
+  color: rgb(255,255,255);
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.order_nav {
+  color: rgb(51,102,153);
+  text-align: right;
+}
+
+.order_nav a:link,
+.order_nav a:visited,
+.order_nav a:hover,
+.order_nav a:active {
+  color: rgb(51,102,153);
+  display: inline-block;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.order_nav a:hover {
+  color: rgb(0,51,102);
+}
+
+/* products/index */
 #filter_form {
   float: right;
-  margin-top: 18px;
+  margin: 18px 20px 0px 0px;
 }
 
 .product[id|=product] {
@@ -87,28 +116,28 @@ body {
   margin: 0px;
 }
 
-.admin_menu {
+.admin_nav {
   color: rgb(51,102,153);
   margin: 10px 0px 0px;
   padding: 2px;
   text-align: right;
 }
 
-.admin_menu li {
+.admin_nav li {
   display: inline;
   list-style: none;
 }
 
-.admin_menu li a:link,
-.admin_menu li a:visited,
-.admin_menu li a:hover,
-.admin_menu li a:active {
+.admin_nav li a:link,
+.admin_nav li a:visited,
+.admin_nav li a:hover,
+.admin_nav li a:active {
   color: rgb(51,102,153);
   font-size: 77%;
   text-decoration: none;
 }
 
-.admin_menu li a:hover {
+.admin_nav li a:hover {
   color: rgb(0,51,153);
 }
 
@@ -123,7 +152,7 @@ body {
 
 .add_product input[type=number] {
   margin-bottom: 20px;
-  width: 80px;
+  width: 125px;
 }
 
 .add_product p {
@@ -146,10 +175,46 @@ a.new_product_link:hover {
   color: rgb(0,51,102);
 }
 
+/* orders/show */
+
+.section_title {
+  background: rgb(245,245,245);
+  border-top: 2px solid rgb(51,102,153);
+  text-indent: 20px;
+}
+
+.payment_value {
+  color: rgb(153,0,0);
+}
+
+.payments_area {
+  position: relative;
+  top: -52px;
+}
+
+.payments_area h3 {
+  margin-top: 4px;
+}
+
+#payment_form {
+  background: rgb(245,245,245);
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+#payment_form h2 {
+  margin-top: 0px;
+}
+
+#payment_form input {
+  width: 150px;
+}
+
 /* FOOTER */
 
 #footer {
-  background: rgb(153,153,153);
+  background: rgb(105,105,105);
   margin-top: 25px;
   padding: 5px;
   text-align: right;
