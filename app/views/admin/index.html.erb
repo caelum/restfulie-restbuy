@@ -1,21 +1,11 @@
- <h1>Master of Magic</h1>
+<div class="grid_12 clearfix page_title">
+  <h1>Master of Magic</h1>
+</div>
+<!-- HERE! -->
 
 <table width="100%">
 	<tr><td>
 
-<script>
-function change_state(payment) {
-	state = prompt("Enter new state [paid, rejected]:");
-	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
-		{name: "_method", value: "put"},
-		{name: "id", value: payment},
-		{name: "state", value: state}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-	return false;
-}
-</script>
 <h2>Payments</h2>
 <table>
 	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
@@ -39,22 +29,6 @@ function change_state(payment) {
 
 </td><td>
 
-<script>
-function delivering_order_selected(order, what) {
-	f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
-		{name: "_method", value: "put"},
-		{name: "id", value: order},
-		{name: "state", value: what}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-	return false;
-}
-function delivering_order(order, options) {
-	state = prompt("Enter new state " + options + ":");
-	delivering_order_selected(order, state);
-}
-</script>
 <h2>Orders</h2>
 <table>
 	<tr><th>Id</th><th>State</th><th>Address</th><th>Price</th></tr>
@@ -76,3 +50,37 @@ function delivering_order(order, options) {
 </table>
 
 </tr></table>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+
+  function delivering_order_selected(order, what) {
+    f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
+      {name: "_method", value: "put"},
+      {name: "id", value: order},
+      {name: "state", value: what}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+    return false;
+  }
+
+  function delivering_order(order, options) {
+    state = prompt("Enter new state " + options + ":");
+    delivering_order_selected(order, state);
+  }
+
+  function change_state(payment) {
+    state = prompt("Enter new state [paid, rejected]:");
+    f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
+      {name: "_method", value: "put"},
+      {name: "id", value: payment},
+      {name: "state", value: state}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+    return false;
+  }
+
+</script>
+<% end %>
