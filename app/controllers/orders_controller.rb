@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
       @order.state = "cancelled"
       @order.save
       respond_to do |format|
-        format.html { redirect_to(orders_url) }
+        format.html { redirect_to products_url, :notice => "Order cancelled." }
         format.xml  { redirect_to(order_url(@order)) }
       end
     else
