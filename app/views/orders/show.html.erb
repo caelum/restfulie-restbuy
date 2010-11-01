@@ -15,7 +15,7 @@
 <% if @order.can_cancel? %>
 <div class="grid_3">
   <h3>Cancel Order</h3>
-  <a href="javascript:change_to('cancel');">Click here to cancel this order</a>
+  <a href="javascript:cancel(<%= @order.id %>);">Click here to cancel this order</a>
 </div>
 <% end %>
 

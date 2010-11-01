@@ -51,7 +51,10 @@ class OrdersController < ApplicationController
     if @order.can_cancel?
       @order.state = "cancelled"
       @order.save
-      redirect_to(orders_url)
+      respond_to do |format|
+        format.html { redirect_to products_url, :notice => "Order cancelled." }
+        format.xml  { redirect_to(order_url(@order)) }
+      end
     else
       redirect_to(order, :notice => 'Order can not be cancelled')
     end
