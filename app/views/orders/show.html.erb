@@ -152,7 +152,7 @@
 
 
 <% content_for :javascripts do %>
-<script>
+<script type="text/javascripts">
 
   function cancel(order) {
     f = new Formfy().with.action("<%= order_path(@order) %>").post().inputs(
