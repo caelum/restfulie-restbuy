@@ -5,7 +5,7 @@ describe Restfulie do
   context "when searching" do
     
     def search(what)
-      description = Restfulie.at("http://localhost:1500/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       items = description.use("application/atom+xml").search(:searchTerms => what, :startPage => 1)
     end
     
