@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index
     # @products = Product.where {name.like? "%#{params[:name] || ''}%"}
-    @products = Product.where("name like ?", "%#{params[:name] || ''}%")
+    @products = Product.where("name like ?", "%#{params[:q] || ''}%")
 
     respond_to do |format|
       format.html # index.html.erb

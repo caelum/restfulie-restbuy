@@ -6,6 +6,8 @@ body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
 }
 
+/* HEADER */
+
 #header {
   height: 80px;
 }
@@ -45,11 +47,106 @@ body {
   color: rgb(0,51,102);
 }
 
+/* CONTENT */
+
 #content {
   background: rgb(255,255,255);
-  padding: 10px;
-  width: 940px;
 }
+
+#page_title {
+  float: left;
+  margin-left: 20px;
+}
+
+#filter_form {
+  float: right;
+  margin-top: 18px;
+}
+
+.product[id|=product] {
+  padding: 10px;
+  width: 760px;
+}
+
+.product {
+  background: rgb(245,245,245);
+  border-top: 1px solid rgb(204,204,204);
+  border-bottom: 1px solid rgb(204,204,204);
+  margin-bottom: 10px;
+  height: 78px;
+  -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
+}
+
+.product h3 {
+  color: rgb(0,51,102);
+  font: bold 116% "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
+  margin-top: 0px;
+}
+
+.product p.price {
+  margin: 0px;
+}
+
+.admin_menu {
+  color: rgb(51,102,153);
+  margin: 10px 0px 0px;
+  padding: 2px;
+  text-align: right;
+}
+
+.admin_menu li {
+  display: inline;
+  list-style: none;
+}
+
+.admin_menu li a:link,
+.admin_menu li a:visited,
+.admin_menu li a:hover,
+.admin_menu li a:active {
+  color: rgb(51,102,153);
+  font-size: 77%;
+  text-decoration: none;
+}
+
+.admin_menu li a:hover {
+  color: rgb(0,51,153);
+}
+
+.add_product {
+  background: rgb(220,220,220);
+  border-top: 1px solid rgb(204,204,204);
+  border-bottom: 1px solid rgb(204,204,204);
+  height: 98px;
+  padding-left: 20px;
+  -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
+}
+
+.add_product input[type=number] {
+  margin-bottom: 20px;
+  width: 80px;
+}
+
+.add_product p {
+  position: relative;
+  top: 8px;
+}
+
+a.new_product_link:link,
+a.new_product_link:visited,
+a.new_product_link:hover,
+a.new_product_link:active {
+  color: rgb(51,102,153);
+  display: block;
+  font: bold 108% "Lucida Sans Unicode", "Lucida Grande", Sans-serif;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+a.new_product_link:hover {
+  color: rgb(0,51,102);
+}
+
+/* FOOTER */
 
 #footer {
   background: rgb(153,153,153);

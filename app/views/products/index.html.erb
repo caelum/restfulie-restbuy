@@ -1,40 +1,37 @@
-<h1>Listing products</h1>
+<div class="grid_12 clearfix">
 
 <form action="<%= products_path %>">
-	Filter: <input name="name" value="<%= params[:name]%>" /> <input type="submit" value="filter" />
+	Filter: <input name="q" value="<%= params[:q]%>" /> <input type="submit" value="filter" />
 </form>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+</div>
 
 <% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.price %></td>
-		<td>
-			<input id="product_<%=product.id%>" value="1" />
-			<% if current_order %>
-				<input type="button" onclick="add(<%=product.id%>);" value="add to current order">
-			<% else %>
-				<input type="button" onclick="create(<%=product.id%>);" value="add to order">
-			<% end %>
-		</td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div id="<%= "product-#{product.id}" %>" class="grid_10 clearfix product omega">
+  <h3><%= product.name %></h3>
+  <p class="price"><%= number_to_currency product.price, :unit => "$" %></p>
+  <ul class="admin_menu">
+    <li><%= link_to "Details", product %> |</li>
+    <li><%= link_to "Edit", edit_product_path(product) %> |</li>
+    <li><%= link_to "Delete", product, :confirm => "Are you sure?\nThis operation cannot be undone.", :method => :delete %></li>
+  </ul>
+</div>
+<div class="grid_2 add_product alpha">
+  <p>Buy now!</p>
+  <input type="number" id="product_<%=product.id%>" value="1" />
+  <% if current_order %>
+  <input type="button" onclick="add(<%=product.id%>);" value="add to current order">
+  <% else %>
+  <input type="button" onclick="create(<%=product.id%>);" value="add to order">
+  <% end %>
+</div>
+<% end %>  
 
-<br />
+<div class="clear"></div>
+<div class="grid_12">
+  <%= link_to 'Add a new product', new_product_path, :class => "new_product_link" %>
+</div>
 
-<%= link_to 'New Product', new_product_path %>
 
 <% content_for :javascripts do %>
 <script>
