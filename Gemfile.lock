@@ -68,7 +68,11 @@ GEM
     rake (0.8.7)
     relata (0.0.3)
     respondie (0.9.0)
+<<<<<<< HEAD:Gemfile.lock
     restfulie (0.1.0.beta1)
+=======
+    restfulie (1.0.0.beta1)
+>>>>>>> a566473... updating version:Gemfile.lock
       actionpack (>= 2.3.2)
       activesupport (>= 2.3.2)
       json_pure (>= 1.2.4)
@@ -108,7 +112,11 @@ DEPENDENCIES
   rails (= 3.0.0)
   relata
   respondie
+<<<<<<< HEAD:Gemfile.lock
   restfulie (= 0.1.0.beta1)
+=======
+  restfulie (>= 1.0.0.beta1)
+>>>>>>> a566473... updating version:Gemfile.lock
   rspec-rails (>= 2.0.0.beta.19)
   ruby-debug
   sqlite3-ruby

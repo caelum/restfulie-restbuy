@@ -10,13 +10,6 @@ class CalendarController < ApplicationController
   def show
     @order = Order.find(params[:order_id])
 
-    links = Links.new({
-      :order => order_url(@order),
-      :payments => order_payments_url(@order),
-      :tracking => "http://your_tracking_uri",
-      :cancel => order_url(@order)
-    })
-    
     content = "BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
 PRODID:iCalendar-Master
