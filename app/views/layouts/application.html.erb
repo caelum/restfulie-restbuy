@@ -36,10 +36,10 @@
       <% flash.each do |key, message| %>
         <%= content_tag :div, message, :class => "flash-#{key}" %>
       <% end %>
-
+    </div>
+    <div class="grid_12 order_nav">
       <%if current_order %>
-        <%= link_to 'Your most recent accessed order', current_order %>
-        | <%= link_to 'Clear session', system_logout_path %> |
+        <%= link_to 'Your most recent accessed order', current_order %> | <%= link_to 'Clear session', system_logout_path %>
       <% end %>
     </div>
 
