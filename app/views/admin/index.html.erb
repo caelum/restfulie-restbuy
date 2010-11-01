@@ -102,10 +102,12 @@
 
 <div class="grid_2">
   <p>
-    <%if order.state=="preparing" %>
-    <a href="javascript:delivering_order_selected(<%=order.id%>, 'delivering');">
-    <%elsif order.state=="delivering" %>
-    <a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);">
+    <% if order.state=="preparing" %>
+    <a href="javascript:delivering_order_selected(<%=order.id%>, 'delivering');"><%= order.state %></a>
+    <% elsif order.state=="delivering" %>
+    <a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);"><%= order.state %></a>
+    <% else %>
+    <%= order.state %>
     <% end %>
   </p>
 </div>
