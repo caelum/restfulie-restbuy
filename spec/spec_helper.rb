@@ -6,7 +6,6 @@
 require 'rspec'
 require 'restfulie'
 require 'ruby-debug'
-require 'debuggie'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
