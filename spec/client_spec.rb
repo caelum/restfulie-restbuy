@@ -27,10 +27,9 @@ describe Restfulie do
     it "should be able to add an item to an order" do
       results = search("20")
       
-      product = results.resource.products[0]
+      product = results.resource.products.product[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
     
-    debugger
       result = results.resource.products.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
@@ -41,7 +40,7 @@ describe Restfulie do
     it "should be able to pay" do
       results = search("20")
       
-      product = results.resource.products[0]
+      product = results.resource.products.product[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
     
       result = results.resource.products.links.order.follow.post(my_order).resource
@@ -54,6 +53,7 @@ describe Restfulie do
     
     def pay(result)
       card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
+      debugger
       result = result.order.links.payment.follow.post(card).resource
     end
     
