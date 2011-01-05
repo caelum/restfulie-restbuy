@@ -6,12 +6,12 @@ describe Restfulie do
     
     def search(what)
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      items = description.use("application/atom+xml").search(:searchTerms => what, :startPage => 1)
+      items = description.use("application/xml").search(:searchTerms => what, :startPage => 1)
     end
     
     it "should be able to search items" do
       items = search("20")
-      items.resource.entries.size.should == 2
+      items.resource.products.size.should == 2
     end
     
     def my_order
@@ -20,17 +20,18 @@ describe Restfulie do
     
     it "should be able to create an empty order" do
       response = search("20")
-      response = response.resource.links.order.follow.post(my_order)
+      response = response.resource.products.links.order.follow.post(my_order)
       response.resource.order.address.should == my_order[:order][:address]
     end
     
     it "should be able to add an item to an order" do
       results = search("20")
       
-      product = results.resource.entries[0]
+      product = results.resource.products[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
     
-      result = results.resource.links.order.follow.post(my_order).resource
+    debugger
+      result = results.resource.products.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
       result.order.price.should == product.price
@@ -40,10 +41,10 @@ describe Restfulie do
     it "should be able to pay" do
       results = search("20")
       
-      product = results.resource.entries[0]
+      product = results.resource.products[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
     
-      result = results.resource.links.order.follow.post(my_order).resource
+      result = results.resource.products.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
       result = pay(result)
@@ -76,10 +77,10 @@ describe Restfulie do
     it "should try and pay for it" do
       results = search("20")
       
-      product = results.resource.entries[0]
+      product = results.resource.products[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
 
-      result = results.resource.links.order.follow.post(my_order).resource
+      result = results.resource.products.links.order.follow.post(my_order).resource
       result = result.order.links.self.follow.put(selected).resource
       
       result = pay(result)

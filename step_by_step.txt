@@ -63,8 +63,8 @@ Presenting a server:
 # PART 2: 10 minutes: tag 2-opensearch
 suporta opensearch, mostra cliente
 curl http://localhost:3000/products/opensearch.xml
-curl http://localhost:3000/products?q=apple\&format=atom
-curl http://localhost:3000/products?q=\&format=atom
+curl http://localhost:3000/products?q=apple\&format=xml
+curl http://localhost:3000/products?q=\&format=xml
 (amazon can consume, google consumes, browser can consume)
 
 # client_spec.rb

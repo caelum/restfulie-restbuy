@@ -1,4 +1,4 @@
-member(@order) do |m|
+member(@order, :root => "order") do |m|
   
   m.link "self", order_url(@order)
   m.link "payment", "http://localhost:3100/payments/restbuy/#{@order.id}", "type" => "application/xml"
@@ -7,23 +7,43 @@ member(@order) do |m|
     v.address @order.address
     v.price @order.price
     v.state @order.state
+    
+    v.payments do
+      @order.payments.each do |p|
+        v.payment do 
+          v.value  p.value
+          v.state  p.state
+        end
+      end
+    end
+
+    v.items do
+      @order.items.each do |item|
+        v.item do 
+          v.id     item.product.id
+          v.name   item.product.name
+          v.price  item.product.price
+          v.quantity  item.quantity
+        end
+      end
+    end
   }
   
-  m.members(@order.items) do |member, item|
-    member.link :self, product_url(item.product)
-    member.values { |values|
-      values.id     item.product.id
-      values.name   item.product.name
-      values.price  item.product.price
-      values.quantity  item.quantity
-    }
-  end
-
-  m.members(@order.payments) do |member, payment|
-    member.values { |values|
-      values.value  payment.value
-      values.state  payment.state
-    }
-  end
+  # m.members(@order.items, :root => "products") do |member, item|
+  #   member.link :self, product_url(item.product)
+  #   member.values { |values|
+  #     values.id     item.product.id
+  #     values.name   item.product.name
+  #     values.price  item.product.price
+  #     values.quantity  item.quantity
+  #   }
+  # end
+  
+  # m.members(@order.payments, :root => "payments") do |member, payment|
+  #   member.values { |values|
+  #     values.value  payment.value
+  #     values.state  payment.state
+  #   }
+  # end
 
 end
