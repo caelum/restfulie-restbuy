@@ -53,7 +53,6 @@ describe Restfulie do
     
     def pay(result)
       card = {:payment => {:card_holder => "guilherme silveira", :card_number => 4444, :value => result.order.price}}
-      debugger
       result = result.order.links.payment.follow.post(card).resource
     end
     
@@ -62,7 +61,7 @@ describe Restfulie do
       while result.order.state == "processing_payment"
         sleep 10
         puts "Checking order status at #{result.order.links.self.href}"
-        result = result.order.refresh.resource
+        result = result.order.links.self.follow.get.resource
       end
       
       if result.order.state == "unpaid" && attempts>0
