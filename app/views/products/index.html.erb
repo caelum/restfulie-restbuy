@@ -1,62 +1,65 @@
-<h1>Listing products</h1>
+<div class="grid_12 clearfix page_title">
+  <h1 id="page_title">Our Products</h1>
+  <form id="filter_form" action="<%= products_path %>">
+    Filter: <input name="q" value="<%= params[:q]%>" /> <input type="submit" value="filter" />
+  </form>  
+</div>
 
-<form action="<%= products_path %>">
-	Filter: <input name="q" value="<%= params[:q]%>" /> <input type="submit" value="filter" />
-</form>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<script>
-<% if current_order %>
-function add(product) {
-	qtd = $('#product_' + product).val()
-	f = new Formfy().with.action("<%= order_path(current_order) %>").post().inputs(
-		{name: "_method", value: "put"},
-		{name: "order[product]", value: product},
-		{name: "order[quantity]", value: qtd}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-}
-<% end %>
-function create(product) {
-	qtd = $('#product_' + product).val()
-	address = prompt("Enter your address");
-	f = new Formfy().with.action("<%= orders_path%>").post().inputs(
-		{name: "order[product]", value: product},
-		{name: "order[address]", value: address},
-		{name: "order[quantity]", value: qtd}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-}
-</script>
 <% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.price %></td>
-		<td>
-			<input id="product_<%=product.id%>" value="1" />
-			<% if current_order %>
-				<input type="button" onclick="add(<%=product.id%>);" value="add to current order">
-			<% else %>
-				<input type="button" onclick="create(<%=product.id%>);" value="add to order">
-			<% end %>
-		</td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<div id="<%= "product-#{product.id}" %>" class="grid_10 clearfix product omega">
+  <h3><%= product.name %></h3>
+  <p class="price"><%= number_to_currency product.price, :unit => "$" %></p>
+  <ul class="admin_nav">
+    <li><%= link_to "Details", product %> |</li>
+    <li><%= link_to "Edit", edit_product_path(product) %> |</li>
+    <li><%= link_to "Delete", product, :confirm => "Are you sure?\nThis operation cannot be undone.", :method => :delete %></li>
+  </ul>
+</div>
+<div class="grid_2 add_product alpha">
+  <p>Buy now!</p>
+  <input type="number" id="product_<%=product.id%>" value="1" min="1" />
+  <% if current_order %>
+  <input type="button" onclick="add(<%=product.id%>);" value="Add to current order">
+  <% else %>
+  <input type="button" onclick="create(<%=product.id%>);" value="Add to order">
+  <% end %>
+</div>
+<% end %>  
+
+<div class="clear"></div>
+<div class="grid_12">
+  <%= link_to 'Add a new product', new_product_path, :class => "new_product_link" %>
+</div>
+
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  <% if current_order %>
+
+  function add(product) {
+    qtd = $('#product_' + product).val()
+    f = new Formfy().with.action("<%= order_path(current_order) %>").post().inputs(
+      {name: "_method", value: "put"},
+      {name: "order[product]", value: product},
+      {name: "order[quantity]", value: qtd}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  <% end %>
+
+  function create(product) {
+    qtd = $('#product_' + product).val()
+    address = prompt("Enter your address");
+    f = new Formfy().with.action("<%= orders_path%>").post().inputs(
+      {name: "order[product]", value: product},
+      {name: "order[address]", value: address},
+      {name: "order[quantity]", value: qtd}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+</script>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Product', new_product_path %>

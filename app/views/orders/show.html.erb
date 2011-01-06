@@ -1,91 +1,168 @@
-<p id="notice"><%= notice %></p>
+<div class="grid_12 clearfix page_title">
+  <h1 id="page_title">Order No. <%= @order.id %></h1>
+</div>
 
-<p>
-  <b>Id:</b>
-  <%= @order.id %>
-</p>
+<div class="grid_6">  
+  <h3>Delivery Address</h3>
+  <p><%= @order.address %></p>
+</div>
 
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
+<div class="grid_3">
+  <h3>Status</h3>
+  <p><%= @order.state %></p>  
+</div>
 
-<script>
-function cancel(order) {
-	f = new Formfy().with.action("<%= order_path(@order) %>").post().inputs(
-		{name: "_method", value: "delete"},
-		{name: "id", value: order}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-	return false;
-}
-</script>
-<p>
-  <b>State:</b>
-  <%= @order.state %>
 <% if @order.can_cancel? %>
-	<a href="javascript:change_to('cancel');">Cancel</a>
+<div class="grid_3">
+  <h3>Cancel Order</h3>
+  <a href="javascript:cancel(<%= @order.id %>);">Click here to cancel this order</a>
+</div>
 <% end %>
-</p>
 
-<p>
-  <b>Price:</b>
-  <%= @order.price %>
-</p>
+<div class="grid_12 section_title">
+  <h2>Order Items</h2>
+</div>
 
-<p>
-  <b>Price to pay:</b>
-  <%= @order.price_to_pay %>
-</p>
+<div class="grid_7">
+  <h3>Product</h3>
+</div>
 
-<h2>Products</h2>
-<table>
-<tr><th>Name</th><th>Quantity</th></tr>
-<% @order.items.each do |i| %>
-<tr>
-	<td><%= i.product.name %></td>
-	<td><%= i.quantity %></td>
-</tr>
+<div class="grid_2">
+  <h3>Unit Price</h3>
+</div>
+
+<div class="grid_1">
+  <h3>Qty</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Item Total</h3>
+</div>
+
+<div class="clear"></div>
+
+<% @order.items.each do |item| %>
+<div class="grid_7">
+  <p><%= item.product.name %></p>
+</div>
+
+<div class="grid_2">
+  <p><%= number_to_currency item.product.price, :unit => "$" %></p>
+</div>
+
+<div class="grid_1">
+  <p><%= item.quantity %></p>
+</div>
+
+<div class="grid_2">
+  <p><%= number_to_currency((item.product.price * item.quantity), :unit => "$") %></p>
+</div>
+
+<div class="clear"></div>
 <% end %>
-</table>
 
-<h2>Payments</h2>
-<table>
-	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
-<% @order.payments.each do |i| %>
-	<tr>
-		<td><%= i.id %></td>
-		<td><%= i.card_number %></td>
-		<td><%= i.card_holder %></td>
-		<td><%= i.value %></td>
-		<td><%= i.state %></td>
-	</tr>
-<% end %>
-</table>
+<div class="grid_10"><hr></div>
 
+<div class="grid_2">
+  <h3>Order Total:</h3>
+  <p><%= number_to_currency @order.price, :unit => "$" %></p>
+</div>
 
-<% if @order.can_pay? %>
-<%= form_for([@order, @payment]) do |f| %>
-  <div class="field">
-    <%= f.label :card_holder %><br />
-    <%= f.text_field :card_holder %>
+<div class="grid_12 section_title">
+  <h2>Payments</h2>
+</div>
+
+<div class="push_9 grid_3 clearfix">
+  <h3>Amount to Pay:<br><span class="payment_value"><%= number_to_currency @order.price_to_pay, :unit => "$" %></span></h3>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_9 clearfix payments_area">
+  <div class="grid_1 alpha">
+    <h3>ID</h3>
   </div>
-  <div class="field">
-    <%= f.label :card_number %><br />
-    <%= f.text_field :card_number %>
+
+  <div class="grid_2">
+    <h3>Card Number</h3>
   </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
+
+  <div class="grid_2">
+    <h3>Card Holder</h3>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="grid_2">
+    <h3>Value</h3>
   </div>
+
+  <div class="grid_2 omega">
+    <h3>Payment Status</h3>
+  </div>
+</div>
+
+<div class="grid_9 clearfix payments_area">
+  <% @order.payments.each do |payment| %>
+  <div class="grid_1 alpha">
+    <p><%= payment.id %></p>
+  </div>
+
+  <div class="grid_2">
+    <p><%= payment.card_number %></p>
+  </div>
+
+  <div class="grid_2">
+    <p><%= payment.card_holder %></p>
+  </div>
+
+  <div class="grid_2">
+    <p><%= number_to_currency payment.value, :unit => "$" %></p>
+  </div>
+
+  <div class="grid_2 omega">
+    <p><%= payment.state %></p>
+  </div>
+  <div class="clear"></div>
+  <% end %>
+</div>
+
+<div class="clear"></div>
+
+<div id="payment_form" class="grid_3">
+  <% if @order.can_pay? %>
+  <h2>Make a new payment</h2>
+
+    <%= form_for([@order, @payment]) do |f| %>
+      <p>
+        <%= f.label :card_holder %><br />
+        <%= f.text_field :card_holder %>
+      </p>
+      <p>
+        <%= f.label :card_number %><br />
+        <%= f.text_field :card_number %>
+      </p>
+      <p>
+        <%= f.label :value %><br />
+        <%= f.text_field :value, :type => "number", :min => "0.00", :value => "0.00", :step => "0.01" %>
+      </p>
+      <%= f.submit %>
+    <% end %>
+
+  <% end %>
+</div>
+
+
+<% content_for :javascripts do %>
+<script type="text/javascripts">
+
+  function cancel(order) {
+    f = new Formfy().with.action("<%= order_path(@order) %>").post().inputs(
+      {name: "_method", value: "delete"},
+      {name: "id", value: order}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+    return false;
+  }
+
+</script>
 <% end %>
-
-<% end %>
-
-
-<%= link_to 'Products', products_path %> |
-<%= link_to 'Back', orders_path %>

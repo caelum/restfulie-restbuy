@@ -1,78 +1,162 @@
- <h1>Master of Magic</h1>
+<div class="grid_12 clearfix page_title">
+  <h1 id="page_title">Master of Magic</h1>
+</div>
+<!-- HERE! -->
 
-<table width="100%">
-	<tr><td>
-
-<script>
-function change_state(payment) {
-	state = prompt("Enter new state [paid, rejected]:");
-	f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
-		{name: "_method", value: "put"},
-		{name: "id", value: payment},
-		{name: "state", value: state}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-	return false;
-}
-</script>
-<h2>Payments</h2>
-<table>
-	<tr><th>Id</th><th>Number</th><th>Holder</th><th>Value</th><th>State</th></tr>
-<% @payments.each do |i| %>
-	<tr>
-		<td><%= i.id %></td>
-		<td><%= i.card_number %></td>
-		<td><%= i.card_holder %></td>
-		<td><%= i.value %></td>
-		<td>
-		<%if !i.finished_processing? %>
-			<a href="javascript:change_state(<%=i.id%>);">
-		<% end %>
-		<%= i.state %></a></td>
-		<td><%= link_to "order #{i.order.id}", i.order %></td>
-	</tr>
-<% end %>
-</table>
-
+<div class="grid_12 section_title">
+  <h2>Payments</h2>
 </div>
 
-</td><td>
+<div class="grid_1">
+  <h3>Order</h3>
+</div>
 
-<script>
-function delivering_order_selected(order, what) {
-	f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
-		{name: "_method", value: "put"},
-		{name: "id", value: order},
-		{name: "state", value: what}
-			).done();
-	document.body.appendChild(f);
-	f.submit();
-	return false;
-}
-function delivering_order(order, options) {
-	state = prompt("Enter new state " + options + ":");
-	delivering_order_selected(order, state);
-}
-</script>
-<h2>Orders</h2>
-<table>
-	<tr><th>Id</th><th>State</th><th>Address</th><th>Price</th></tr>
-<% @orders.each do |order| %>
-	<tr>
-		<td><%= order.id %></td>
-		<td>
-		<%if order.state=="preparing" %>
-			<a href="javascript:delivering_order_selected(<%=order.id%>, 'delivering');">
-		<%elsif order.state=="delivering" %>
-			<a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);">
-		<% end %>
-		<%= order.state %></a></td>
-		<td><%= link_to "show", order %></td>
-		<td><%= order.address %></td>
-		<td><%= order.price %></td>
-	</tr>
+<div class="grid_1">
+  <h3>ID</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Card Number</h3>
+</div>
+
+<div class="grid_4">
+  <h3>Card Holder</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Value</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Status</h3>
+</div>
+
+<div class="clear"></div>
+
+<% @payments.each do |payment| %>
+<div class="grid_1">
+  <p><%= link_to "order #{payment.order.id}", payment.order %></p>
+</div>
+
+<div class="grid_1">
+  <p><%= payment.id %></p>
+</div>
+
+<div class="grid_2">
+  <p><%= payment.card_number %></p>
+</div>
+
+<div class="grid_4">
+  <p><%= payment.card_holder %></p>
+</div>
+
+<div class="grid_2">
+  <p><%= number_to_currency payment.value, :symbol => "$" %></p>
+</div>
+
+<div class="grid_2">
+  <p>
+  <% if payment.finished_processing? %>
+  <%= payment.state %>
+  <% else %>
+  <a href="javascript:change_state(<%= payment.id %>);"><%= payment.state %></a>
+  <% end %>
+  </p>
+</div>
+
+<div class="clear"></div>
 <% end %>
-</table>
 
-</tr></table>
+
+<div class="grid_12 section_title">
+  <h2>Orders</h2>
+</div>
+
+<div class="grid_1">
+  <h3>ID</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Status</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Order</h3>
+</div>
+
+<div class="grid_5">
+  <h3>Delivery Address</h3>
+</div>
+
+<div class="grid_2">
+  <h3>Price</h3>
+</div>
+
+<div class="clear"></div>
+
+
+<% @orders.each do |order| %>
+<div class="grid_1">
+  <p><%= order.id %></p>
+</div>
+
+<div class="grid_2">
+  <p>
+    <% if order.state=="preparing" %>
+    <a href="javascript:delivering_order_selected(<%=order.id%>, 'delivering');"><%= order.state %></a>
+    <% elsif order.state=="delivering" %>
+    <a href="javascript:delivering_order(<%=order.id%>, ['delivered','failed_to_deliver']);"><%= order.state %></a>
+    <% else %>
+    <%= order.state %>
+    <% end %>
+  </p>
+</div>
+
+<div class="grid_2">
+  <p><%= link_to "show", order %></p>
+</div>
+
+<div class="grid_5">
+  <p><%= order.address %></p>
+</div>
+
+<div class="grid_2">
+  <p><%= number_to_currency order.price, :symbol => "$" %></p>
+</div>
+
+<div class="clear"></div>
+<% end %>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+
+  function delivering_order_selected(order, what) {
+    f = new Formfy().with.action("<%= admin_update_order_path %>").post().inputs(
+      {name: "_method", value: "put"},
+      {name: "id", value: order},
+      {name: "state", value: what}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+    return false;
+  }
+
+  function delivering_order(order, options) {
+    state = prompt("Enter new state " + options + ":");
+    delivering_order_selected(order, state);
+  }
+
+  function change_state(payment) {
+    state = prompt("Enter new state [paid, rejected]:");
+    f = new Formfy().with.action("<%= admin_update_payment_path %>").post().inputs(
+      {name: "_method", value: "put"},
+      {name: "id", value: payment},
+      {name: "state", value: state}
+    ).done();
+    document.body.appendChild(f);
+    f.submit();
+    return false;
+  }
+
+</script>
+<% end %>

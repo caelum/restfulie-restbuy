@@ -27,8 +27,8 @@ class Order < ActiveRecord::Base
   end
   
   def price
-    items.inject(0) do |sum, i|
-      sum + i.product.price
+    items.inject(0.0) do |sum, i|
+      sum + (i.product.price * i.quantity)
     end
   end
   
