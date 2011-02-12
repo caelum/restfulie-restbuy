@@ -5,8 +5,7 @@ describe Restfulie do
   context "when searching" do
 
     def searchOrders(what)
-      response = Restfulie.at('http://localhost:3000/admin/index').accepts("application/xml").get
-      orders = response.resource
+      resource = Restfulie.at('http://localhost:3000/admin/update_order/').as("application/xml").post!(:order => { :address=> "jdfkjdk", :state => "paid"})
     end
 
     def search(what)
@@ -18,6 +17,10 @@ describe Restfulie do
     it "should be able to search items" do
       items = search("20")
       items.resource.products.size.should == 2
+    end
+
+    def paid_order
+      {:order => { :address=> "jdfkjdk", :state => "paid"}}
     end
 
     def my_order
@@ -64,7 +67,10 @@ describe Restfulie do
 
     def wait_payment_success(attempts, result)
 
-      searchOrders(1)
+      orders = searchOrders(paid_order)
+
+      puts orders.class
+
       if result.order.state == "processing_payment"
 
         puts "Checking order status at #{result.order.links.self.href}"
