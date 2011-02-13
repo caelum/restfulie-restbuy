@@ -9,14 +9,6 @@ describe Restfulie do
       items = description.use("application/xml").search(:searchTerms => what, :startPage => 1)
     end
 
-    def search_all
-      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
-      items = description.use("application/xml").search(:searchTerms => 20, :startPage => 1)
-
-
-    end
-
-
     it "should be able to search items" do
       items = search("20")
       items.resource.products.size.should == 2
@@ -70,7 +62,7 @@ describe Restfulie do
 
     def wait_payment_success(attempts, result)
       
-      results = search_all
+      results = search("20")
 
       results.resource.products.each do |product|
 
