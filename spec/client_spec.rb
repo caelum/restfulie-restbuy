@@ -4,10 +4,6 @@ describe Restfulie do
 
   context "when searching" do
 
-    def searchOrders(what)
-      resource = Restfulie.at('http://localhost:3000/products').as("application/xml").post!(:order => { :address=> "jdfkjdk123", :state => "paid"})
-    end
-
     def search(what)
       description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
       items = description.use("application/xml").search(:searchTerms => what, :startPage => 1)
@@ -67,9 +63,10 @@ describe Restfulie do
 
     def wait_payment_success(attempts, result)
 
-      orders = searchOrders(paid_order)
-
-      puts orders.class
+      response = search("20")
+      result.order.state = "paid"
+      response = response.resource.products.links.order.follow.post(result.order)
+      #response.resource.order.address.should == paid_order[:order][:address]
 
       if result.order.state == "processing_payment"
 
