@@ -5,7 +5,7 @@ describe Restfulie do
   context "when searching" do
 
     def searchOrders(what)
-      resource = Restfulie.at('http://localhost:3000/admin/update_order/').as("application/xml").post!(:order => { :address=> "jdfkjdk", :state => "paid"})
+      resource = Restfulie.at('http://localhost:3000/products').as("application/xml").post!(:order => { :address=> "jdfkjdk123", :state => "paid"})
     end
 
     def search(what)
