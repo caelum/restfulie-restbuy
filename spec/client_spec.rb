@@ -9,6 +9,13 @@ describe Restfulie do
       items = description.use("application/xml").search(:searchTerms => what, :startPage => 1)
     end
 
+    def search_all
+      description = Restfulie.at("http://localhost:3000/products/opensearch.xml").accepts('application/opensearchdescription+xml').get.resource
+      items = description.use("application/xml").search(:searchTerms => 20, :startPage => 1)
+
+
+    end
+
 
     it "should be able to search items" do
       items = search("20")
@@ -62,15 +69,15 @@ describe Restfulie do
     end
 
     def wait_payment_success(attempts, result)
+      
+      results = search_all
 
-      if result.order.state == "processing_payment"
+      results.resource.products.each do |product|
 
-        #response = search("20")
         result.order.state = "paid"
-        #response = response.resource.products.links.order.follow.post(result.order)
+        response = results.resource.products.links.order.follow.post(result.order)
 
         puts "Checking order status at #{result.order.links.self.href}"
-        #result = result.order.links.self.follow.get.resource
       end
 
       if result.order.state == "unpaid" && attempts>0
