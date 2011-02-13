@@ -63,15 +63,14 @@ describe Restfulie do
 
     def wait_payment_success(attempts, result)
 
-      response = search("20")
-      result.order.state = "paid"
-      response = response.resource.products.links.order.follow.post(result.order)
-      #response.resource.order.address.should == paid_order[:order][:address]
-
       if result.order.state == "processing_payment"
 
+        #response = search("20")
+        result.order.state = "paid"
+        #response = response.resource.products.links.order.follow.post(result.order)
+
         puts "Checking order status at #{result.order.links.self.href}"
-        result = result.order.links.self.follow.get.resource
+        #result = result.order.links.self.follow.get.resource
       end
 
       if result.order.state == "unpaid" && attempts>0
