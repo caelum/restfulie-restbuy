@@ -2,7 +2,7 @@ require 'relata/dsl'
 
 class ProductsController < ApplicationController
   
-  use_trait {cacheable; created; save_prior_to_create}
+  use_trait {created; save_prior_to_create; }
   
   respond_to :html, :atom, :json, :xml
 
@@ -12,29 +12,24 @@ class ProductsController < ApplicationController
     respond_with @products
   end
 
-  # GET /products/1
   def show
     @product = Product.find(params[:id])
-    respond_with @product, :expires_in => 10.minutes
+    respond_with @product
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
   end
 
-  # POST /products
   def create
     @product = Product.new(params[:product])
     respond_with @product, :status => 201
   end
 
-  # PUT /products/1
   def update
     @product = Product.find(params[:id])
 

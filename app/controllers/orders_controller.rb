@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   
-  use_trait {cacheable; created}
+  use_trait {created}
 
   respond_to :html, :xml, :json, :atom
 
@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @payment = Payment.new
-    respond_with @order, :expires_in => 0.seconds
+    respond_with @order
   end
 
   # POST /orders
