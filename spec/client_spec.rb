@@ -84,7 +84,7 @@ describe Restfulie do
     it "should try and pay for it" do
       results = search("20")
 
-      product = results.resource.products[0]
+      product = results.resource.products.product[0]
       selected = {:order => {:product => product.id, :quantity => 1}}
 
       result = results.resource.products.links.order.follow.post(my_order).resource

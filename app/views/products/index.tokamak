@@ -1,14 +1,14 @@
-collection(@products, :root => "products") do |collection|
-
-  collection.link "order", orders_url, "type" => "application/xml"
+products {
+  link "order", orders_url, "type" => "application/xml"
   
-  collection.members(:root => "product") do |member, product|
-     member.link   :self,  product_url(product)
-	 member.values do |values|
-	 	values.id product.id
-		values.name product.name
-		values.price product.price
-	 end
+  @products.each do |prod|
+    product {
+      link   :self,  product_url(prod)
+      id prod.id
+      name prod.name
+      price prod.price
+    }
   end
-  
-end
+
+}
+
